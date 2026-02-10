@@ -160,8 +160,15 @@
       }
 
       @keyframes hintPulse {
-        0%, 100% { opacity: 0.3; transform: translateX(-50%) translateY(0); }
-        50% { opacity: 0.6; transform: translateX(-50%) translateY(-5px); }
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          opacity: 0.6;
+          transform: translateX(-50%) translateY(-5px);
+        }
       }
 
       /* Ripple effect */
@@ -183,9 +190,16 @@
 
       /* Shake animation for errors */
       @keyframes shake {
-        0%, 100% { transform: translateX(0); }
-        25% { transform: translateX(-10px); }
-        75% { transform: translateX(10px); }
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-10px);
+        }
+        75% {
+          transform: translateX(10px);
+        }
       }
 
       .shake {
@@ -718,12 +732,6 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-
-        /* Multi-layer glow and shadow */
-        filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5))
-          drop-shadow(0 0 20px rgba(56, 189, 248, 0.4))
-          drop-shadow(0 0 40px rgba(168, 85, 247, 0.2))
-          drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
       }
 
       @keyframes glowPulse {
@@ -754,9 +762,7 @@
       .grand-title.show {
         opacity: 1;
         transform: translate(-50%, -50%) translateY(0);
-        animation:
-          glowPulse 3s ease-in-out infinite,
-          shimmerMove 8s linear infinite;
+        animation: shimmerMove 8s linear infinite;
       }
 
       .perf-lite .grand-title.show {
@@ -1886,7 +1892,9 @@
       ];
 
       const fullMessage =
-        "เก่งมากๆยินดีด้วยครับ พี่ภูมิใจในตัวน้องเสมอ ต่อจากนี้ขอให้ทุกเป้าหมายที่น้องตั้งใจไว้ สำเร็จทุกก้าว และมีรอยยิ้มอยู่ในทุกวัน ขอให้ก้าวต่อไปของน้องเต็มไปด้วยความสุข ความสำเร็จ และสิ่งดีๆที่รอน้องอยู่ข้างหน้า จัฟอิอิ อุอิอา";
+        "ขอแสดงความยินดีกับ " +
+        "ใย โบ๋น้อย" +
+        " ด้วยนะครับที่ผ่านการคัดเลือกเป็นสาวลาดกระบัง แต่นี้คือจุดเริ่มต้นอีกก้าวแห่งนรกที่เราเลือกหลังจากเรียนจบมอปลาย หลังจากนี้น้องจะได้ไปใช้ชีวิตในรั้วมหาลัยที่เต็มไปด้วยประสบการณ์ใหม่ๆ และเป็นอิสรมากขึ้น ข้อให้น้องมีมิตรภาพดีๆกับเพื่อนๆ ที่รออยู่ข้างหน้า พี่บอนเชื่อว่าน้องจะสามารถปรับตัวและเติบโตในสภาพแวดล้อมใหม่ได้อย่างยอดเยี่ยม ขอให้น้องมีความสุขกับการเรียนและใช้ชีวิตในมหาลัยด้วยตัวเองอย่างเต็มที่ อาจจะเจอร์ผู้คนใหม่ๆ อาจจะชอบหรือไม่ชอขเขาเหล่านั้นก็ได้ แต่ขอให้น้องจงมั่นใจในตัวเองเข้าไว้ ทางข้างหน้าอาจจะเรียนหนักบ้าง มีความกดดันบ้าง แต่พี่บอนเชื่อว่าน้องจะผ่านมันไปได้อย่างแน่นอน สู้ๆ ถ้ามีอะไรปรึกษาพี่ได้เด้อ พี่บอส พี่กิล พี่บอน ว่างๆก็เอาเพื่อนมาเมาส์ให้พี่ฟังด้วย :) ขอบคุณที่อ่านจนจบนะ อิอิ!!";
 
       const gate = document.getElementById("gate");
       const nameInput = document.getElementById("nameInput");
@@ -1964,15 +1972,17 @@
           particle.classList.add("particle");
           particle.style.left = `${x}px`;
           particle.style.top = `${y}px`;
-          particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+          particle.style.background =
+            colors[Math.floor(Math.random() * colors.length)];
           document.body.appendChild(particle);
-          
+
           const angle = (Math.PI * 2 * i) / count;
           const velocity = 100 + Math.random() * 100;
           const vx = Math.cos(angle) * velocity;
           const vy = Math.sin(angle) * velocity;
-          
-          let posX = x, posY = y;
+
+          let posX = x,
+            posY = y;
           let alpha = 1;
           const animate = () => {
             posX += vx * 0.016;
@@ -2172,7 +2182,7 @@
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
         createParticleBurst(centerX, centerY, 10);
-        
+
         clearReplayResetTimer();
         hideReplayExit();
         clearIntroTimers();
