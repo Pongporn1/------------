@@ -66,6 +66,12 @@
         opacity: 0.8;
         animation: breath 10s ease-in-out infinite alternate;
       }
+
+      .perf-lite .aurora-bg {
+        filter: blur(34px);
+        animation: none;
+        opacity: 0.62;
+      }
       @keyframes breath {
         0% {
           opacity: 0.6;
@@ -346,6 +352,13 @@
         opacity: 0.42;
       }
 
+      .perf-lite .bento-grid::before,
+      .perf-lite .bento-grid::after {
+        animation: none;
+        filter: none;
+        opacity: 0.16;
+      }
+
       @keyframes letterGlowDrift {
         0% {
           transform: translate3d(0, 0, 0) scale(1);
@@ -442,6 +455,13 @@
         transform: translateX(-18%);
         filter: blur(1px);
         animation: ambientSweep 9.5s ease-in-out infinite;
+      }
+
+      .perf-lite .ambient-orb,
+      .perf-lite .ambient-wave {
+        animation: none;
+        filter: none;
+        opacity: 0.12;
       }
 
       @keyframes orbDriftA {
@@ -590,6 +610,10 @@
         animation: shimmer 5s linear infinite;
       }
 
+      .perf-lite .grand-title.show {
+        animation: none;
+      }
+
       .grand-title.fade-out {
         opacity: 0;
         transform: translate(-50%, -50%) translateY(-14px);
@@ -718,6 +742,10 @@
 
       .next-btn.dance-window {
         animation: next-dance 2.6s ease-in-out infinite;
+      }
+
+      .perf-lite .next-btn.dance-window {
+        animation: none;
       }
 
       .replay-btn {
@@ -860,6 +888,10 @@
         will-change: transform, opacity;
         backface-visibility: hidden;
         user-select: none;
+      }
+
+      .perf-lite .sticker-pop {
+        text-shadow: none;
       }
 
       .sticker-pop.label {
@@ -1254,6 +1286,10 @@
 
       .success-dust.active {
         opacity: 1;
+      }
+
+      .perf-lite .success-dust {
+        display: none;
       }
 
       .dust-particle {
@@ -1678,6 +1714,17 @@
       const catFullscreen = document.querySelector(".cat-fullscreen");
       const catStamp = document.querySelector(".cat-stamp");
       const typewriterText = document.getElementById("typewriterText");
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+      const lowCpu = typeof navigator.hardwareConcurrency === "number"
+        ? navigator.hardwareConcurrency <= 4
+        : false;
+      const lowMemory = typeof navigator.deviceMemory === "number"
+        ? navigator.deviceMemory <= 4
+        : false;
+      const performanceLite = prefersReducedMotion || isTouchDevice || lowCpu || lowMemory;
       let introFadeTimer;
       let introNextTimer;
       let introDanceTimer;
@@ -1688,6 +1735,10 @@
       let replayShowTimer;
       let replayResetTimer;
       let replayStickerStopTimer;
+
+      if (performanceLite) {
+        document.body.classList.add("perf-lite");
+      }
 
       function probeImage(candidate) {
         return new Promise((resolve) => {
@@ -1843,6 +1894,9 @@
 
       function getStickerCoverTarget() {
         const area = window.innerWidth * window.innerHeight;
+        if (performanceLite) {
+          return Math.min(260, Math.max(120, Math.round(area / 6200)));
+        }
         return Math.min(420, Math.max(160, Math.round(area / 4200)));
       }
 
@@ -1908,7 +1962,7 @@
         const x = 1 + Math.random() * 98;
         const y = 2 + Math.random() * 96;
         const rot = -24 + Math.random() * 48;
-        const duration = 520 + Math.random() * 260;
+        const duration = performanceLite ? 620 + Math.random() * 240 : 520 + Math.random() * 260;
 
         sticker.style.setProperty("--x", `${x}%`);
         sticker.style.setProperty("--y", `${y}%`);
@@ -1916,7 +1970,7 @@
         sticker.style.setProperty("--dur", `${duration}ms`);
 
         if (!useLabel) {
-          const sizePx = 28 + Math.random() * 38;
+          const sizePx = performanceLite ? 22 + Math.random() * 30 : 28 + Math.random() * 38;
           sticker.style.fontSize = `${sizePx}px`;
         }
 
@@ -1932,23 +1986,23 @@
         replayExit.classList.add("sticker-flood");
 
         const target = getStickerCoverTarget();
-        const totalStickers = Math.min(
-          720,
-          Math.max(260, Math.round(target * 1.45)),
-        );
+        const totalStickers = performanceLite
+          ? Math.min(380, Math.max(160, Math.round(target * 1.3)))
+          : Math.min(720, Math.max(260, Math.round(target * 1.45)));
+        const floodWindow = performanceLite ? Math.max(900, burstWindowMs * 0.9) : burstWindowMs;
 
         const stickers = document.createDocumentFragment();
         for (let i = 0; i < totalStickers; i += 1) {
           const sticker = buildReplaySticker();
           if (!sticker) continue;
-          const delay = Math.random() * burstWindowMs;
+          const delay = Math.random() * floodWindow;
           sticker.style.animationDelay = `${delay}ms`;
           stickers.appendChild(sticker);
         }
         replayStickers.appendChild(stickers);
         replayStickerStopTimer = setTimeout(() => {
           clearReplayStickerTimers();
-        }, durationMs);
+        }, performanceLite ? Math.max(durationMs, 3000) : durationMs);
       }
 
       function hideReplayExit() {
@@ -2039,6 +2093,7 @@
 
       function startSuccessDust(durationMs = 0) {
         if (!successDust) return;
+        if (performanceLite) return;
         stopSuccessDust();
         clearTimeout(dustHideTimer);
         dustHideTimer = null;
@@ -2098,6 +2153,7 @@
       }
 
       function startIntroDanceWindow() {
+        if (performanceLite) return;
         introCats.classList.add("dance-window");
         nextBtn.classList.add("dance-window");
         introDanceTimer = setTimeout(() => {
