@@ -2068,8 +2068,8 @@
 
         const target = getStickerCoverTarget();
         const totalStickers = performanceLite
-          ? Math.min(35, Math.max(30, Math.round(target * 0.1)))
-          : Math.min(55, Math.max(45, Math.round(target * 0.15)));
+          ? Math.min(100, Math.max(90, Math.round(target * 0.3)))
+          : Math.min(110, Math.max(100, Math.round(target * 0.35)));
         const floodWindow = performanceLite
           ? Math.max(600, burstWindowMs * 0.7)
           : Math.max(800, burstWindowMs * 0.85);
