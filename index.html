@@ -2099,7 +2099,12 @@
       }
 
       async function showReplayExitAndReset() {
-        const finalSceneDurationMs = 4000;
+        const imageDisplayMs = 10000; // แสดงรูปก่อน 10 วินาที
+        const floodDurationMs = 2600;
+        const floodBurstMs = 1200;
+        // เวลารอให้ sticker แสดงครบ = floodBurst + animation duration + buffer
+        const stickerCompleteMs = 800 + 400 + 500; // ~1700ms
+        
         clearReplayResetTimer();
         resetReplayStickers();
         stopSuccessDust();
@@ -2110,15 +2115,16 @@
           requestAnimationFrame(() => replayExit.classList.add("show"));
         }
 
-        startReplayStickerFlood(2600, 1200);
-        const coveragePromise = waitForStickerCoverage(1700, 520);
+        // รอ 10 วินาทีก่อนเริ่มแสดง sticker
+        setTimeout(() => {
+          startReplayStickerFlood(floodDurationMs, floodBurstMs);
+        }, imageDisplayMs);
 
-        replayResetTimer = setTimeout(async () => {
-          await coveragePromise;
-          await wait(320);
+        // reload หลังจากแสดงรูป + sticker ครบทุกอัน
+        replayResetTimer = setTimeout(() => {
           if (replayExit && replayExit.classList.contains("hidden")) return;
           window.location.reload();
-        }, finalSceneDurationMs);
+        }, imageDisplayMs + stickerCompleteMs);
       }
 
       function positionReplayButton() {
