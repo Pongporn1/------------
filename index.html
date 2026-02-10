@@ -40,77 +40,17 @@
         align-items: center;
       }
 
-      /* ===== EPIC BACKGROUND ===== */
-      /* ===== HYPER-PREMIUM GALAXY BACKGROUND ===== */
+      /* ===== SIMPLE HANDMADE BACKGROUND ===== */
       .aurora-bg {
-        position: fixed; inset: 0; z-index: -2;
-        background: #030014; /* Void black-blue */
-        overflow: hidden;
-      }
-
-      /* Deep Nebula Layers (Fixed) */
-      .nebula-layer {
-        position: absolute; inset: -20%;
-        background: 
-          radial-gradient(circle at 20% 50%, rgba(76, 29, 149, 0.4), transparent 50%),
-          radial-gradient(circle at 80% 30%, rgba(236, 72, 153, 0.25), transparent 40%),
-          radial-gradient(circle at 40% 80%, rgba(56, 189, 248, 0.3), transparent 60%);
-        filter: blur(80px);
-        opacity: 0.8;
-        mix-blend-mode: screen;
-        animation: nebula-pulse 10s ease-in-out infinite alternate;
-      }
-      
-      /* Interactive Parallax Layers will be applied via JS to .stars-container and .nebula-layer */
-
-      @keyframes nebula-pulse {
-        0% { opacity: 0.7; transform: scale(1); }
-        100% { opacity: 0.9; transform: scale(1.05); }
-      }
-
-      /* Improved Stars */
-      .stars-container {
-        position: fixed; inset: -10%; z-index: -2; pointer-events: none;
-        transition: transform 0.1s ease-out; /* Smooth parallax */
-      }
-      
-      .star {
-        position: absolute;
-        background: #fff; border-radius: 50%;
-        box-shadow: 0 0 4px #fff;
-        animation: twinkle var(--dur, 3s) ease-in-out infinite;
-        opacity: var(--op, 0.8);
-      }
-      
-      /* Star sizes */
-      .star.s { width: 1px; height: 1px; }
-      .star.m { width: 2px; height: 2px; box-shadow: 0 0 6px rgba(255,255,255,0.8); }
-      .star.l { width: 3px; height: 3px; box-shadow: 0 0 10px rgba(255,255,255,1); }
-
-      /* Shooting Star (Refined) */
-      .shooting-star {
-        position: absolute;
-        width: 150px; height: 1px;
-        background: linear-gradient(90deg, white, transparent);
-        opacity: 0; z-index: -1;
-        transform: rotate(-45deg);
-        animation: shoot 5s ease-in-out infinite;
-      }
-      .shooting-star::before {
-        content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
-        width: 2px; height: 2px; background: #fff; border-radius: 50%;
-        box-shadow: 0 0 10px 2px rgba(255,255,255,0.8);
-      }
-
-      @keyframes twinkle {
-        0%, 100% { opacity: 0.3; transform: scale(0.8); }
-        50% { opacity: 1; transform: scale(1.2); }
-      }
-      
-      @keyframes shoot {
-        0% { transform: rotate(-45deg) translateX(0); opacity: 1; }
-        15% { opacity: 1; }
-        100% { transform: rotate(-45deg) translateX(-150vw); opacity: 0; }
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        background: linear-gradient(
+          135deg,
+          #1a1a2e 0%,
+          #16213e 50%,
+          #0f3460 100%
+        );
       }
 
       /* ===== UTILS ===== */
@@ -146,8 +86,6 @@
         opacity: 0;
         pointer-events: none;
       }
-
-
 
       .gate-title {
         font-family: var(--font-head);
@@ -1606,10 +1544,7 @@
   </head>
   <body>
     <!-- Backgrounds -->
-    <div class="aurora-bg">
-      <div class="nebula-layer"></div>
-    </div>
-    <div class="stars-container" id="starsContainer"></div>
+    <div class="aurora-bg"></div>
     <div class="noise-overlay"></div>
     <div class="gold-dust-container" id="goldDust"></div>
 
@@ -2544,59 +2479,7 @@
         }
         t();
       }
-      // Hyper-Premium Cosmos Effects
-      const starsContainer = document.getElementById('starsContainer');
-      const nebula = document.querySelector('.nebula-layer');
-      
-      if (starsContainer && !performanceLite) {
-        // 1. Generate Parallax Stars
-        // Create 3 layers of stars for depth
-        const starCount = 200;
-        for (let i = 0; i < starCount; i++) {
-          const star = document.createElement('div');
-          const r = Math.random();
-          // Distributed sizes: 60% small, 30% medium, 10% large
-          const sizeClass = r < 0.6 ? 's' : (r < 0.9 ? 'm' : 'l');
-          
-          star.className = `star ${sizeClass}`;
-          star.style.left = Math.random() * 100 + '%';
-          star.style.top = Math.random() * 100 + '%';
-          star.style.setProperty('--dur', (Math.random() * 4 + 2) + 's');
-          star.style.setProperty('--op', Math.random() * 0.7 + 0.3); // varying opacity
-          
-          starsContainer.appendChild(star);
-        }
-
-        // 2. Interactive Parallax Effect
-        document.addEventListener('mousemove', (e) => {
-          const x = (e.clientX / window.innerWidth - 0.5) * 2; // -1 to 1
-          const y = (e.clientY / window.innerHeight - 0.5) * 2;
-
-          // Move stars opposite to mouse (depth)
-          starsContainer.style.transform = `translate(${x * -15}px, ${y * -15}px)`;
-          
-          // Move nebula slightly differently (deeper layer)
-          if (nebula) {
-             nebula.style.transform = `translate(${x * 10}px, ${y * 10}px) scale(1.1)`;
-          }
-        });
-
-        // 3. Shooting Stars Randomizer
-        setInterval(() => {
-          if(Math.random() > 0.7) createShootingStar();
-        }, 2000);
-
-        function createShootingStar() {
-          const shooter = document.createElement('div');
-          shooter.className = 'shooting-star';
-          shooter.style.top = (Math.random() * 60) + '%';
-          shooter.style.left = (Math.random() * 100) + '%';
-          starsContainer.appendChild(shooter);
-          
-          // Remove after animation
-          setTimeout(() => shooter.remove(), 5000);
-        }
-      }
+      // Background effects removed for simple handmade look
     </script>
   </body>
 </html>
