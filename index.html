@@ -545,11 +545,11 @@
         z-index: 41;
         font-family: var(--font-head);
         font-weight: 900;
-        font-size: clamp(3rem, 10vw, 8rem);
+        font-size: clamp(3.5rem, 12vw, 10rem);
         line-height: 1;
         text-align: center;
         margin: 0;
-        filter: none;
+        letter-spacing: 0.08em;
         opacity: 0;
         transform: translate(-50%, -50%) translateY(10px);
         transition:
@@ -557,14 +557,30 @@
           transform 0.6s ease-out;
         pointer-events: none;
 
-        /* Solid gradient - no shimmer */
+        /* Premium cinematic gold gradient */
         background: linear-gradient(
           135deg,
-          var(--color-accent-1),
-          var(--color-accent-2)
+          #ffd700 0%,
+          #ffed4e 20%,
+          #fff9c4 40%,
+          #ffed4e 60%,
+          #ffd700 80%,
+          #d4af37 100%
         );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        background-clip: text;
+        
+        /* Multi-layer cinema shadows */
+        filter: 
+          drop-shadow(0 0 20px rgba(255, 215, 0, 0.6))
+          drop-shadow(0 0 40px rgba(255, 215, 0, 0.4))
+          drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
+        
+        text-shadow:
+          0 2px 4px rgba(0, 0, 0, 0.3),
+          0 4px 8px rgba(0, 0, 0, 0.2),
+          0 8px 16px rgba(0, 0, 0, 0.1);
       }
 
       .grand-title.show {
