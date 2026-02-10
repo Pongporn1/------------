@@ -846,8 +846,8 @@
         white-space: nowrap;
         line-height: 1;
         font-size: clamp(1.4rem, 3.7vw, 3rem);
-        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-        animation: sticker-pop-in var(--dur, 0.4s)
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        animation: sticker-pop-in var(--dur, 0.3s)
           cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         will-change: transform, opacity;
         backface-visibility: hidden;
@@ -2003,8 +2003,8 @@
         const y = 2 + Math.random() * 96;
         const rot = -24 + Math.random() * 48;
         const duration = performanceLite
-          ? 620 + Math.random() * 240
-          : 520 + Math.random() * 260;
+          ? 280 + Math.random() * 140
+          : 250 + Math.random() * 150;
 
         sticker.style.setProperty("--x", `${x}%`);
         sticker.style.setProperty("--y", `${y}%`);
@@ -2013,8 +2013,8 @@
 
         if (!useLabel) {
           const sizePx = performanceLite
-            ? 22 + Math.random() * 30
-            : 28 + Math.random() * 38;
+            ? 20 + Math.random() * 24
+            : 24 + Math.random() * 32;
           sticker.style.fontSize = `${sizePx}px`;
         }
 
@@ -2031,11 +2031,11 @@
 
         const target = getStickerCoverTarget();
         const totalStickers = performanceLite
-          ? Math.min(25, Math.max(20, Math.round(target * 0.08)))
-          : Math.min(40, Math.max(30, Math.round(target * 0.12)));
+          ? Math.min(250, Math.max(200, Math.round(target * 1.2)))
+          : Math.min(350, Math.max(280, Math.round(target * 1.5)));
         const floodWindow = performanceLite
-          ? Math.max(600, burstWindowMs * 0.7)
-          : Math.max(800, burstWindowMs * 0.85);
+          ? Math.max(400, burstWindowMs * 0.5)
+          : Math.max(500, burstWindowMs * 0.6);
 
         const stickers = document.createDocumentFragment();
         for (let i = 0; i < totalStickers; i += 1) {
