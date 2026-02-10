@@ -53,6 +53,92 @@
         );
       }
 
+      /* ===== PRE-INTRO MESSAGE SCREEN ===== */
+      .message-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--color-bg);
+        opacity: 1;
+        transition: opacity 0.6s ease-out;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .message-screen.fade-out {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .message-text {
+        font-family: var(--font-body);
+        font-size: clamp(1.2rem, 4vw, 1.8rem);
+        line-height: 1.6;
+        color: var(--color-text);
+        text-align: center;
+        padding: 40px;
+        max-width: 700px;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      }
+
+      .message-text.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .message-text.hide {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      /* ===== PRE-INTRO MESSAGE SCREEN ===== */
+      .message-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--color-bg);
+        opacity: 1;
+        transition: opacity 0.6s ease-out;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .message-screen.fade-out {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .message-text {
+        font-family: var(--font-body);
+        font-size: clamp(1.2rem, 4vw, 1.8rem);
+        line-height: 1.6;
+        color: var(--color-text);
+        text-align: center;
+        padding: 40px;
+        max-width: 700px;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+      }
+
+      .message-text.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .message-text.hide {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
       /* ===== UTILS ===== */
       .hidden {
         display: none !important;
@@ -1585,6 +1671,11 @@
     <div class="noise-overlay"></div>
     <div class="gold-dust-container" id="goldDust"></div>
 
+    <!-- Pre-intro Message Screen -->
+    <div class="message-screen" id="messageScreen">
+      <div class="message-text" id="messageText"></div>
+    </div>
+
     <!-- 1. Gate -->
     <div class="gate-container" id="gate">
       <div class="gate-title">Enter Access Code</div>
@@ -1697,6 +1788,16 @@
     </div>
 
     <script>
+      // Pre-intro Messages
+      const preIntroMessages = [
+        "มีข้อความส่งมาจากพี่บอนนะจะเปิดอ่านไหม",
+        "เอ๋ๆได้ข่าวว่าน้องสาวกำลังจะได้เป็นสาวราดกระบัง",
+        "ดีใจด้วยค้าบ อิอิ",
+        "ลองเดาดูสิว่าต้องพิมอะไรต่อ",
+        "อะใบ่ให้ \"มิ้น\""
+      ];
+      let currentMessageIndex = 0;
+
       const validNames = new Set([
         "มื้นต์",
         "มิ้น",
@@ -1737,6 +1838,8 @@
       const replayBtn = document.getElementById("replayBtn");
       const replayExit = document.getElementById("replayExit");
       const replayStickers = document.getElementById("replayStickers");
+      const messageScreen = document.getElementById("messageScreen");
+      const messageText = document.getElementById("messageText");
       const explosionContainer = document.getElementById("explosionContainer");
       const bentoGrid = document.getElementById("bentoGrid");
       const successDust = document.getElementById("successDust");
@@ -1773,6 +1876,45 @@
 
       if (performanceLite) {
         document.body.classList.add("perf-lite");
+      }
+
+      // Pre-intro Message Screen Functions
+      function showMessage(index) {
+        if (index >= preIntroMessages.length) {
+          // All messages shown, proceed to gate
+          messageScreen.classList.add("fade-out");
+          setTimeout(() => {
+            messageScreen.classList.add("hidden");
+            gate.style.pointerEvents = "auto";
+          }, 600);
+          return;
+        }
+
+        messageText.classList.remove("show");
+        messageText.classList.add("hide");
+
+        setTimeout(() => {
+          messageText.textContent = preIntroMessages[index];
+          messageText.classList.remove("hide");
+          requestAnimationFrame(() => {
+            messageText.classList.add("show");
+          });
+        }, 300);
+      }
+
+      function handleMessageClick() {
+        currentMessageIndex++;
+        showMessage(currentMessageIndex);
+      }
+
+      // Initialize message screen
+      if (messageScreen) {
+        gate.style.pointerEvents = "none";
+        messageScreen.addEventListener("click", handleMessageClick);
+        // Show first message after a short delay
+        setTimeout(() => {
+          showMessage(0);
+        }, 500);
       }
 
       function probeImage(candidate) {
