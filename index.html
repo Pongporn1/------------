@@ -556,26 +556,60 @@
           transform 0.6s ease-out;
         pointer-events: none;
 
-        /* Original gradient with beautiful glow */
+        /* Detailed gradient with multiple stops */
         background: linear-gradient(
           135deg,
-          var(--color-accent-1),
-          var(--color-accent-2)
+          #a855f7 0%,
+          #d946ef 25%,
+          #38bdf8 50%,
+          #0ea5e9 75%,
+          #a855f7 100%
         );
+        background-size: 200% 200%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         
-        /* Subtle glow effect */
+        /* Multi-layer glow and shadow */
         filter: 
-          drop-shadow(0 0 15px rgba(168, 85, 247, 0.4))
-          drop-shadow(0 0 30px rgba(56, 189, 248, 0.3));
+          drop-shadow(0 0 10px rgba(168, 85, 247, 0.5))
+          drop-shadow(0 0 20px rgba(56, 189, 248, 0.4))
+          drop-shadow(0 0 40px rgba(168, 85, 247, 0.2))
+          drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+      }
+
+      @keyframes glowPulse {
+        0%, 100% {
+          filter: 
+            drop-shadow(0 0 10px rgba(168, 85, 247, 0.5))
+            drop-shadow(0 0 20px rgba(56, 189, 248, 0.4))
+            drop-shadow(0 0 40px rgba(168, 85, 247, 0.2))
+            drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+        }
+        50% {
+          filter: 
+            drop-shadow(0 0 15px rgba(168, 85, 247, 0.7))
+            drop-shadow(0 0 30px rgba(56, 189, 248, 0.6))
+            drop-shadow(0 0 50px rgba(168, 85, 247, 0.3))
+            drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+        }
+      }
+
+      @keyframes shimmerMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 200% 50%;
+        }
       }
 
       .grand-title.show {
         opacity: 1;
         transform: translate(-50%, -50%) translateY(0);
-        animation: none;
+        animation: 
+          glowPulse 3s ease-in-out infinite,
+          shimmerMove 8s linear infinite;
       }
 
       .perf-lite .grand-title.show {
