@@ -1959,6 +1959,7 @@
       }
 
       async function showReplayExitAndReset() {
+        const finalSceneDurationMs = 10000;
         clearReplayResetTimer();
         resetReplayStickers();
         stopSuccessDust();
@@ -1977,7 +1978,7 @@
           await wait(320);
           if (replayExit && replayExit.classList.contains("hidden")) return;
           window.location.reload();
-        }, 2200);
+        }, finalSceneDurationMs);
       }
 
       function positionReplayButton() {
