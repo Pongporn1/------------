@@ -2099,12 +2099,12 @@
       }
 
       async function showReplayExitAndReset() {
-        const imageDisplayMs = 10000; // แสดงรูปก่อน 10 วินาที
+        const imageDisplayMs = 5000; // แสดงรูปก่อน 5 วินาที
         const floodDurationMs = 2600;
         const floodBurstMs = 1200;
         // เวลารอให้ sticker แสดงครบ = floodBurst + animation duration + buffer
         const stickerCompleteMs = 800 + 400 + 500; // ~1700ms
-        
+
         clearReplayResetTimer();
         resetReplayStickers();
         stopSuccessDust();
@@ -2115,7 +2115,7 @@
           requestAnimationFrame(() => replayExit.classList.add("show"));
         }
 
-        // รอ 10 วินาทีก่อนเริ่มแสดง sticker
+        // รอ 5 วินาทีก่อนเริ่มแสดง sticker
         setTimeout(() => {
           startReplayStickerFlood(floodDurationMs, floodBurstMs);
         }, imageDisplayMs);
