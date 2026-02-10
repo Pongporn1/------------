@@ -300,6 +300,7 @@
         opacity: 0;
         transform: translateY(10px);
         transition: all 0.4s ease;
+        position: relative;
       }
       .btn-start.visible {
         opacity: 1;
@@ -308,6 +309,23 @@
       .btn-start:hover {
         transform: translateY(-2px);
         box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      }
+      
+      /* Dodging animation */
+      .btn-start.dodging {
+        transition: all 0.15s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        pointer-events: none;
+      }
+      
+      .btn-start.can-click {
+        animation: celebrate 0.6s ease-in-out;
+      }
+      
+      @keyframes celebrate {
+        0%, 100% { transform: translateY(0) scale(1); }
+        25% { transform: translateY(-5px) scale(1.05); }
+        50% { transform: translateY(0) scale(1.1); }
+        75% { transform: translateY(-5px) scale(1.05); }
       }
 
       .error-msg {
@@ -2000,6 +2018,46 @@
         }
       }
 
+      // Dodging Button Logic
+      let dodgeAttempts = 0;
+      const maxDodges = 3;
+      
+      function dodgeButton() {
+        if (dodgeAttempts >= maxDodges) {
+          btnStart.classList.add("can-click");
+          btnStart.style.transform = "";
+          return;
+        }
+        
+        dodgeAttempts++;
+        btnStart.classList.add("dodging");
+        
+        // Random position within safe bounds
+        const container = gate.getBoundingClientRect();
+        const btnRect = btnStart.getBoundingClientRect();
+        const maxX = 150;
+        const maxY = 100;
+        const randomX = (Math.random() - 0.5) * maxX;
+        const randomY = (Math.random() - 0.5) * maxY;
+        
+        btnStart.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        
+        setTimeout(() => {
+          btnStart.classList.remove("dodging");
+          if (dodgeAttempts >= maxDodges) {
+            btnStart.classList.add("can-click");
+            btnStart.style.transform = "";
+          }
+        }, 150);
+      }
+      
+      // Add dodge behavior when mouse gets close
+      btnStart.addEventListener("mouseenter", (e) => {
+        if (dodgeAttempts < maxDodges && btnStart.classList.contains("visible")) {
+          dodgeButton();
+        }
+      });
+
       // Pre-intro Message Screen Functions
       function showMessage(index) {
         if (index >= preIntroMessages.length) {
@@ -2144,6 +2202,11 @@
 
       // Input Logic
       nameInput.addEventListener("input", (e) => {
+        // Reset dodge attempts when user types
+        dodgeAttempts = 0;
+        btnStart.classList.remove("can-click");
+        btnStart.style.transform = "";
+        
         if (e.target.value.trim().length > 0) {
           btnStart.classList.add("visible");
         } else {
@@ -2154,6 +2217,13 @@
       // Submit Logic
       document.getElementById("loginForm").addEventListener("submit", (e) => {
         e.preventDefault();
+        
+        // Check if button needs to dodge first
+        if (dodgeAttempts < maxDodges) {
+          dodgeButton();
+          return;
+        }
+        
         const raw = nameInput.value.trim();
         const normalized = raw.toLowerCase().replace(/\s+/g, "");
 
@@ -2163,6 +2233,8 @@
           const centerX = rect.left + rect.width / 2;
           const centerY = rect.top + rect.height / 2;
           createParticleBurst(centerX, centerY, 12);
+          dodgeAttempts = 0; // Reset for next time
+          btnStart.classList.remove("can-click");
           startCelebration();
         } else {
           // Error - shake and pulse
