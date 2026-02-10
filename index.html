@@ -22,7 +22,11 @@
         --font-body: "Inter", "Noto Sans Thai", sans-serif;
       }
 
-      * { box-sizing: border-box; margin: 0; padding: 0; }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
       body {
         min-height: 100vh;
@@ -39,111 +43,216 @@
 
       /* ===== EPIC BACKGROUND ===== */
       .aurora-bg {
-        position: fixed; inset: 0; z-index: -2;
-        background: radial-gradient(circle at 50% 120%, rgba(168,85,247,0.15) 0%, rgba(5,5,16,0) 60%),
-                    radial-gradient(circle at 20% 40%, rgba(56,189,248,0.08) 0%, rgba(5,5,16,0) 50%),
-                    radial-gradient(circle at 80% 30%, rgba(255,110,180,0.08) 0%, rgba(5,5,16,0) 50%);
-        filter: blur(60px); opacity: 0.8;
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        background:
+          radial-gradient(
+            circle at 50% 120%,
+            rgba(168, 85, 247, 0.15) 0%,
+            rgba(5, 5, 16, 0) 60%
+          ),
+          radial-gradient(
+            circle at 20% 40%,
+            rgba(56, 189, 248, 0.08) 0%,
+            rgba(5, 5, 16, 0) 50%
+          ),
+          radial-gradient(
+            circle at 80% 30%,
+            rgba(255, 110, 180, 0.08) 0%,
+            rgba(5, 5, 16, 0) 50%
+          );
+        filter: blur(60px);
+        opacity: 0.8;
         animation: breath 10s ease-in-out infinite alternate;
       }
-      @keyframes breath { 0% { opacity: 0.6; transform: scale(1); } 100% { opacity: 0.9; transform: scale(1.1); } }
+      @keyframes breath {
+        0% {
+          opacity: 0.6;
+          transform: scale(1);
+        }
+        100% {
+          opacity: 0.9;
+          transform: scale(1.1);
+        }
+      }
 
       /* ===== UTILS ===== */
-      .hidden { display: none !important; }
-      .fade-out { opacity: 0; pointer-events: none; transition: opacity 0.5s ease; }
+      .hidden {
+        display: none !important;
+      }
+      .fade-out {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.5s ease;
+      }
       .glass {
         background: rgba(255, 255, 255, 0.03);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
       }
 
       /* ===== 1. THE GATE (LOGIN) ===== */
       .gate-container {
-        position: relative; z-index: 10;
-        width: 100%; max-width: 400px;
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        max-width: 400px;
         text-align: center;
-        transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s;
+        transition:
+          transform 1.5s cubic-bezier(0.25, 1, 0.5, 1),
+          opacity 0.8s;
       }
-      .gate-container.zoom-out { transform: scale(20); opacity: 0; pointer-events: none; }
+      .gate-container.zoom-out {
+        transform: scale(20);
+        opacity: 0;
+        pointer-events: none;
+      }
 
       .gate-title {
         font-family: var(--font-head);
-        font-size: 1.2rem; letter-spacing: 0.2em; text-transform: uppercase;
-        color: rgba(255,255,255,0.4); margin-bottom: 40px;
+        font-size: 1.2rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        margin-bottom: 40px;
         animation: fadeInDown 1s ease-out;
       }
 
-      .input-group { position: relative; width: 100%; margin: 0 auto; }
-      .input-name {
-        width: 100%; padding: 16px 0;
-        background: transparent; border: none;
-        border-bottom: 2px solid rgba(255,255,255,0.1);
-        color: #fff; font-size: 1.8rem; font-family: var(--font-head);
-        text-align: center; outline: none; transition: border-color 0.3s;
+      .input-group {
+        position: relative;
+        width: 100%;
+        margin: 0 auto;
       }
-      .input-name:focus { border-bottom-color: var(--color-accent-2); }
-      .input-name::placeholder { color: rgba(255,255,255,0.1); font-size: 1.5rem; }
-      
+      .input-name {
+        width: 100%;
+        padding: 16px 0;
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        color: #fff;
+        font-size: 1.8rem;
+        font-family: var(--font-head);
+        text-align: center;
+        outline: none;
+        transition: border-color 0.3s;
+      }
+      .input-name:focus {
+        border-bottom-color: var(--color-accent-2);
+      }
+      .input-name::placeholder {
+        color: rgba(255, 255, 255, 0.1);
+        font-size: 1.5rem;
+      }
+
       .btn-start {
-        margin-top: 32px; padding: 12px 32px;
-        background: #fff; color: #000; border: none; border-radius: 99px;
-        font-family: var(--font-head); font-weight: 700; font-size: 1rem;
-        cursor: pointer; opacity: 0; transform: translateY(10px);
+        margin-top: 32px;
+        padding: 12px 32px;
+        background: #fff;
+        color: #000;
+        border: none;
+        border-radius: 99px;
+        font-family: var(--font-head);
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(10px);
         transition: all 0.4s ease;
       }
-      .btn-start.visible { opacity: 1; transform: translateY(0); }
-      .btn-start:hover { transform: translateY(-2px); box-shadow: 0 0 20px rgba(255,255,255,0.4); }
+      .btn-start.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .btn-start:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      }
 
       .error-msg {
-        height: 20px; margin-top: 16px;
-        color: var(--color-accent-3); font-size: 0.9rem;
+        height: 20px;
+        margin-top: 16px;
+        color: var(--color-accent-3);
+        font-size: 0.9rem;
       }
 
       /* ===== 2. THE EXPLOSION ===== */
       #explosionContainer {
-        position: fixed; inset: 0; pointer-events: none; z-index: 50;
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 50;
         overflow: hidden;
       }
       .exploding-text {
-        position: absolute; white-space: nowrap;
-        font-family: var(--font-body); font-weight: 600;
+        position: absolute;
+        white-space: nowrap;
+        font-family: var(--font-body);
+        font-weight: 600;
         background: linear-gradient(135deg, #38bdf8, #2563eb);
         color: #fff;
         padding: 12px 24px;
         border-radius: 20px;
         border-bottom-left-radius: 4px; /* Tail */
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         opacity: 0;
         animation: explodeUp 8s cubic-bezier(0.2, 0.6, 0.3, 1) forwards;
         text-shadow: none;
       }
       .exploding-text::after {
-        content: ""; position: absolute; bottom: -6px; left: 0;
-        width: 12px; height: 12px;
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 12px;
+        height: 12px;
         background: inherit;
         clip-path: polygon(0 0, 100% 0, 0 100%);
       }
-      .exploding-text.thai { font-family: "Noto Sans Thai", sans-serif; font-weight: 600; }
-      
+      .exploding-text.thai {
+        font-family: "Noto Sans Thai", sans-serif;
+        font-weight: 600;
+      }
+
       @keyframes explodeUp {
-        0% { transform: translate(-50%, 100vh) scale(0.8); opacity: 0; }
-        10% { opacity: 1; }
-        90% { opacity: 1; }
-        100% { transform: translate(-50%, -120vh) scale(1.1); opacity: 0; }
+        0% {
+          transform: translate(-50%, 100vh) scale(0.8);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-50%, -120vh) scale(1.1);
+          opacity: 0;
+        }
       }
 
       /* ===== 3. THE FINALE (CONTENT) ===== */
       .finale-container {
-        position: fixed; inset: 0; z-index: 20;
-        display: flex; flex-direction: column; justify-content: center; align-items: center;
+        position: fixed;
+        inset: 0;
+        z-index: 20;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         padding: 20px;
         width: 100%;
         gap: 18px;
-        opacity: 0; pointer-events: none; transition: opacity 1s ease 1s; /* Delay for explosion */
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 1s ease 1s; /* Delay for explosion */
       }
-      .finale-container.visible { opacity: 1; pointer-events: auto; }
+      .finale-container.visible {
+        opacity: 1;
+        pointer-events: auto;
+      }
 
       .bento-grid {
         width: min(1240px, 96vw);
@@ -156,7 +265,9 @@
         opacity: 0;
         transform: translateY(24px) scale(0.98);
         pointer-events: none;
-        transition: opacity 0.7s ease, transform 0.7s ease;
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
       }
 
       .bento-grid.visible {
@@ -183,19 +294,43 @@
 
       .bento-grid::before {
         background:
-          radial-gradient(circle at 18% 22%, rgba(255, 214, 102, 0.22), rgba(255, 214, 102, 0) 52%),
-          radial-gradient(circle at 84% 30%, rgba(145, 200, 255, 0.2), rgba(145, 200, 255, 0) 50%),
-          radial-gradient(circle at 46% 82%, rgba(255, 160, 212, 0.16), rgba(255, 160, 212, 0) 55%);
+          radial-gradient(
+            circle at 18% 22%,
+            rgba(255, 214, 102, 0.22),
+            rgba(255, 214, 102, 0) 52%
+          ),
+          radial-gradient(
+            circle at 84% 30%,
+            rgba(145, 200, 255, 0.2),
+            rgba(145, 200, 255, 0) 50%
+          ),
+          radial-gradient(
+            circle at 46% 82%,
+            rgba(255, 160, 212, 0.16),
+            rgba(255, 160, 212, 0) 55%
+          );
         filter: blur(26px);
         animation: letterGlowDrift 12s ease-in-out infinite alternate;
       }
 
       .bento-grid::after {
         background-image:
-          radial-gradient(circle, rgba(255,255,255,0.22) 0.9px, transparent 1px),
-          radial-gradient(circle, rgba(255,236,176,0.28) 1px, transparent 1.1px);
-        background-size: 130px 130px, 190px 190px;
-        background-position: 0 0, 70px 40px;
+          radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.22) 0.9px,
+            transparent 1px
+          ),
+          radial-gradient(
+            circle,
+            rgba(255, 236, 176, 0.28) 1px,
+            transparent 1.1px
+          );
+        background-size:
+          130px 130px,
+          190px 190px;
+        background-position:
+          0 0,
+          70px 40px;
         animation: letterSparkleFloat 16s linear infinite;
       }
 
@@ -212,14 +347,24 @@
       }
 
       @keyframes letterGlowDrift {
-        0% { transform: translate3d(0, 0, 0) scale(1); }
-        100% { transform: translate3d(0, -14px, 0) scale(1.03); }
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        100% {
+          transform: translate3d(0, -14px, 0) scale(1.03);
+        }
       }
 
       @keyframes letterSparkleFloat {
-        0% { transform: translate3d(0, 0, 0); }
-        50% { transform: translate3d(-12px, -8px, 0); }
-        100% { transform: translate3d(-20px, -16px, 0); }
+        0% {
+          transform: translate3d(0, 0, 0);
+        }
+        50% {
+          transform: translate3d(-12px, -8px, 0);
+        }
+        100% {
+          transform: translate3d(-20px, -16px, 0);
+        }
       }
 
       .bento-grid > .letter-ambient {
@@ -251,7 +396,11 @@
         height: 220px;
         top: 4%;
         left: 10%;
-        background: radial-gradient(circle, rgba(255, 221, 140, 0.62), rgba(255, 221, 140, 0));
+        background: radial-gradient(
+          circle,
+          rgba(255, 221, 140, 0.62),
+          rgba(255, 221, 140, 0)
+        );
         animation: orbDriftA 13s ease-in-out infinite alternate;
       }
 
@@ -260,7 +409,11 @@
         height: 260px;
         top: 56%;
         right: 6%;
-        background: radial-gradient(circle, rgba(151, 210, 255, 0.54), rgba(151, 210, 255, 0));
+        background: radial-gradient(
+          circle,
+          rgba(151, 210, 255, 0.54),
+          rgba(151, 210, 255, 0)
+        );
         animation: orbDriftB 16s ease-in-out infinite alternate;
       }
 
@@ -269,39 +422,72 @@
         height: 180px;
         bottom: 8%;
         left: 44%;
-        background: radial-gradient(circle, rgba(255, 167, 218, 0.52), rgba(255, 167, 218, 0));
+        background: radial-gradient(
+          circle,
+          rgba(255, 167, 218, 0.52),
+          rgba(255, 167, 218, 0)
+        );
         animation: orbDriftC 12s ease-in-out infinite alternate;
       }
 
       .ambient-wave {
         position: absolute;
         inset: 12% -26%;
-        background: linear-gradient(110deg, rgba(255,255,255,0) 42%, rgba(255,255,255,0.14) 52%, rgba(255,255,255,0) 62%);
+        background: linear-gradient(
+          110deg,
+          rgba(255, 255, 255, 0) 42%,
+          rgba(255, 255, 255, 0.14) 52%,
+          rgba(255, 255, 255, 0) 62%
+        );
         transform: translateX(-18%);
         filter: blur(1px);
         animation: ambientSweep 9.5s ease-in-out infinite;
       }
 
       @keyframes orbDriftA {
-        0% { transform: translate3d(0, 0, 0) scale(1); }
-        100% { transform: translate3d(24px, -18px, 0) scale(1.08); }
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        100% {
+          transform: translate3d(24px, -18px, 0) scale(1.08);
+        }
       }
 
       @keyframes orbDriftB {
-        0% { transform: translate3d(0, 0, 0) scale(1); }
-        100% { transform: translate3d(-30px, -12px, 0) scale(1.06); }
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        100% {
+          transform: translate3d(-30px, -12px, 0) scale(1.06);
+        }
       }
 
       @keyframes orbDriftC {
-        0% { transform: translate3d(0, 0, 0) scale(1); }
-        100% { transform: translate3d(14px, -22px, 0) scale(1.1); }
+        0% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        100% {
+          transform: translate3d(14px, -22px, 0) scale(1.1);
+        }
       }
 
       @keyframes ambientSweep {
-        0%, 14% { transform: translateX(-24%); opacity: 0; }
-        30% { opacity: 0.42; }
-        56% { transform: translateX(16%); opacity: 0.22; }
-        100% { transform: translateX(30%); opacity: 0; }
+        0%,
+        14% {
+          transform: translateX(-24%);
+          opacity: 0;
+        }
+        30% {
+          opacity: 0.42;
+        }
+        56% {
+          transform: translateX(16%);
+          opacity: 0.22;
+        }
+        100% {
+          transform: translateX(30%);
+          opacity: 0;
+        }
       }
 
       .card {
@@ -315,8 +501,13 @@
 
       /* ===== ANIMATIONS ===== */
       @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
       }
       .card.floating {
         opacity: 1;
@@ -330,17 +521,33 @@
       } /* Float in opposite phase */
 
       @keyframes shimmer {
-        0% { background-position: -200% center; }
-        100% { background-position: 200% center; }
+        0% {
+          background-position: -200% center;
+        }
+        100% {
+          background-position: 200% center;
+        }
       }
-      
+
       @keyframes heartbeat {
-        0%, 100% { transform: scale(1); }
-        25% { transform: scale(1.1); }
-        50% { transform: scale(1); }
-        75% { transform: scale(1.1); }
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.1);
+        }
+        50% {
+          transform: scale(1);
+        }
+        75% {
+          transform: scale(1.1);
+        }
       }
-      .msg-footer span { display: inline-block; animation: heartbeat 1.5s ease-in-out infinite; }
+      .msg-footer span {
+        display: inline-block;
+        animation: heartbeat 1.5s ease-in-out infinite;
+      }
 
       /* Updated Title Shimmer */
       .grand-title {
@@ -348,20 +555,33 @@
         left: 50%;
         top: 50%;
         z-index: 41;
-        font-family: var(--font-head); font-weight: 900;
+        font-family: var(--font-head);
+        font-weight: 900;
         font-size: clamp(3rem, 10vw, 8rem);
-        line-height: 1; text-align: center;
+        line-height: 1;
+        text-align: center;
         margin: 0;
-        filter: drop-shadow(0 0 30px rgba(168,85,247,0.4));
+        filter: drop-shadow(0 0 30px rgba(168, 85, 247, 0.4));
         opacity: 0;
         transform: translate(-50%, -50%) translateY(20px);
-        transition: opacity 1.2s ease, transform 1.2s ease, filter 1.2s ease;
+        transition:
+          opacity 1.2s ease,
+          transform 1.2s ease,
+          filter 1.2s ease;
         pointer-events: none;
-        
+
         /* Shimmer Gradient */
-        background: linear-gradient(90deg, var(--color-accent-3), var(--color-accent-1), #fff, var(--color-accent-2), var(--color-accent-3));
+        background: linear-gradient(
+          90deg,
+          var(--color-accent-3),
+          var(--color-accent-1),
+          #fff,
+          var(--color-accent-2),
+          var(--color-accent-3)
+        );
         background-size: 200% auto;
-        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
 
       .grand-title.show {
@@ -373,7 +593,7 @@
       .grand-title.fade-out {
         opacity: 0;
         transform: translate(-50%, -50%) translateY(-14px);
-        filter: blur(2px) drop-shadow(0 0 20px rgba(168,85,247,0.15));
+        filter: blur(2px) drop-shadow(0 0 20px rgba(168, 85, 247, 0.15));
       }
 
       .intro-cats-container {
@@ -385,7 +605,9 @@
         gap: 0;
         opacity: 0;
         transform: scale(1.02);
-        transition: opacity 0.5s ease, transform 0.5s ease;
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
         pointer-events: none;
       }
       .intro-cats-container.show {
@@ -399,10 +621,12 @@
         object-fit: cover;
         border-radius: 0;
         border: none;
-        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
         opacity: 0;
         transform: translateY(24px) scale(1.05);
-        transition: opacity 0.35s ease, transform 0.35s ease;
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s ease;
       }
 
       .intro-cat.revealed {
@@ -412,33 +636,64 @@
 
       /* Dancing Float Animation */
       @keyframes dance-float {
-        0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
-        25% { transform: translateY(-14px) translateX(-4px) rotate(-2deg); }
-        50% { transform: translateY(0) translateX(0) rotate(0deg); }
-        75% { transform: translateY(-9px) translateX(4px) rotate(2deg); }
+        0%,
+        100% {
+          transform: translateY(0) translateX(0) rotate(0deg);
+        }
+        25% {
+          transform: translateY(-14px) translateX(-4px) rotate(-2deg);
+        }
+        50% {
+          transform: translateY(0) translateX(0) rotate(0deg);
+        }
+        75% {
+          transform: translateY(-9px) translateX(4px) rotate(2deg);
+        }
       }
 
       @keyframes next-dance {
-        0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
-        25% { transform: translateX(-50%) translateY(-7px) scale(1.03); }
-        50% { transform: translateX(-50%) translateY(0) scale(1); }
-        75% { transform: translateX(-50%) translateY(-4px) scale(1.02); }
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0) scale(1);
+        }
+        25% {
+          transform: translateX(-50%) translateY(-7px) scale(1.03);
+        }
+        50% {
+          transform: translateX(-50%) translateY(0) scale(1);
+        }
+        75% {
+          transform: translateX(-50%) translateY(-4px) scale(1.02);
+        }
       }
 
       /* Apply dancing only in first 10s window */
-      .intro-cats-container.dance-window .intro-cat.revealed:nth-child(1) { animation: dance-float 3s ease-in-out infinite; animation-delay: 0s; }
-      .intro-cats-container.dance-window .intro-cat.revealed:nth-child(2) { animation: dance-float 3.2s ease-in-out infinite; animation-delay: 0.2s; }
-      .intro-cats-container.dance-window .intro-cat.revealed:nth-child(3) { animation: dance-float 2.8s ease-in-out infinite; animation-delay: 0.5s; }
+      .intro-cats-container.dance-window .intro-cat.revealed:nth-child(1) {
+        animation: dance-float 3s ease-in-out infinite;
+        animation-delay: 0s;
+      }
+      .intro-cats-container.dance-window .intro-cat.revealed:nth-child(2) {
+        animation: dance-float 3.2s ease-in-out infinite;
+        animation-delay: 0.2s;
+      }
+      .intro-cats-container.dance-window .intro-cat.revealed:nth-child(3) {
+        animation: dance-float 2.8s ease-in-out infinite;
+        animation-delay: 0.5s;
+      }
 
       .next-btn {
         position: fixed;
         left: 50%;
         bottom: 8vh;
         z-index: 42;
-        border: 1px solid rgba(255,255,255,0.24);
+        border: 1px solid rgba(255, 255, 255, 0.24);
         border-radius: 999px;
         padding: 12px 32px;
-        background: linear-gradient(120deg, rgba(56,189,248,0.92), rgba(168,85,247,0.92));
+        background: linear-gradient(
+          120deg,
+          rgba(56, 189, 248, 0.92),
+          rgba(168, 85, 247, 0.92)
+        );
         color: #fff;
         font-family: var(--font-head);
         font-size: 1.2rem;
@@ -446,11 +701,13 @@
         letter-spacing: 0.05em;
         text-transform: uppercase;
         cursor: pointer;
-        box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
         opacity: 0;
         transform: translateX(-50%) translateY(10px);
         pointer-events: none;
-        transition: opacity 0.4s ease, transform 0.4s ease;
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
       }
 
       .next-btn.show {
@@ -468,20 +725,26 @@
         left: 50%;
         top: 50%;
         z-index: 52;
-        border: 1px solid rgba(255,255,255,0.3);
+        border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 999px;
         padding: 10px 24px;
-        background: linear-gradient(120deg, rgba(255,248,224,0.95), rgba(255,221,169,0.92));
+        background: linear-gradient(
+          120deg,
+          rgba(255, 248, 224, 0.95),
+          rgba(255, 221, 169, 0.92)
+        );
         color: #5a4635;
         font-family: "Noto Sans Thai", var(--font-head);
         font-size: 1rem;
         font-weight: 700;
         cursor: pointer;
-        box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
         opacity: 0;
         transform: translateX(-50%) translateY(12px);
         pointer-events: none;
-        transition: opacity 0.35s ease, transform 0.35s ease;
+        transition:
+          opacity 0.35s ease,
+          transform 0.35s ease;
       }
 
       .replay-btn.show {
@@ -501,7 +764,9 @@
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
+        transition:
+          opacity 0.3s ease,
+          visibility 0.3s ease;
       }
 
       .replay-exit.show {
@@ -515,7 +780,10 @@
         height: min(94vh, 980px);
         object-fit: contain;
         object-position: center;
-        transition: opacity 0.35s ease, filter 0.35s ease, transform 0.35s ease;
+        transition:
+          opacity 0.35s ease,
+          filter 0.35s ease,
+          transform 0.35s ease;
       }
 
       .replay-exit.sticker-flood img {
@@ -552,9 +820,17 @@
         z-index: 0;
         opacity: 0;
         background:
-          radial-gradient(circle at 22% 30%, rgba(255,255,255,0.14), rgba(255,255,255,0) 44%),
-          radial-gradient(circle at 78% 24%, rgba(255,255,255,0.13), rgba(255,255,255,0) 40%),
-          linear-gradient(180deg, rgba(8,8,22,0.2), rgba(8,8,22,0.9));
+          radial-gradient(
+            circle at 22% 30%,
+            rgba(255, 255, 255, 0.14),
+            rgba(255, 255, 255, 0) 44%
+          ),
+          radial-gradient(
+            circle at 78% 24%,
+            rgba(255, 255, 255, 0.13),
+            rgba(255, 255, 255, 0) 40%
+          ),
+          linear-gradient(180deg, rgba(8, 8, 22, 0.2), rgba(8, 8, 22, 0.9));
       }
 
       .replay-exit.sticker-flood .replay-stickers::before {
@@ -571,14 +847,16 @@
         z-index: 1;
         left: var(--x, 50%);
         top: var(--y, 50%);
-        transform: translate3d(-50%, -50%, 0) scale(0.2) rotate(var(--rot, 0deg));
+        transform: translate3d(-50%, -50%, 0) scale(0.2)
+          rotate(var(--rot, 0deg));
         transform-origin: center center;
         opacity: 0;
         white-space: nowrap;
         line-height: 1;
         font-size: clamp(1.4rem, 3.7vw, 3rem);
         text-shadow: 0 6px 12px rgba(0, 0, 0, 0.34);
-        animation: sticker-pop-in var(--dur, 0.75s) cubic-bezier(0.18, 0.88, 0.28, 1.16) forwards;
+        animation: sticker-pop-in var(--dur, 0.75s)
+          cubic-bezier(0.18, 0.88, 0.28, 1.16) forwards;
         will-change: transform, opacity;
         backface-visibility: hidden;
         user-select: none;
@@ -588,7 +866,11 @@
         padding: 8px 12px;
         border-radius: 999px;
         border: 1px solid rgba(255, 255, 255, 0.34);
-        background: linear-gradient(120deg, rgba(56,189,248,0.92), rgba(168,85,247,0.94));
+        background: linear-gradient(
+          120deg,
+          rgba(56, 189, 248, 0.92),
+          rgba(168, 85, 247, 0.94)
+        );
         color: #fff;
         font-family: var(--font-head);
         font-size: clamp(0.82rem, 1.55vw, 1.1rem);
@@ -600,24 +882,31 @@
       @keyframes sticker-pop-in {
         0% {
           opacity: 0;
-          transform: translate3d(-50%, -50%, 0) scale(0.15) rotate(var(--rot, 0deg));
+          transform: translate3d(-50%, -50%, 0) scale(0.15)
+            rotate(var(--rot, 0deg));
         }
         36% {
           opacity: 1;
         }
         72% {
           opacity: 1;
-          transform: translate3d(-50%, -50%, 0) scale(1.08) rotate(calc(var(--rot, 0deg) * 0.35));
+          transform: translate3d(-50%, -50%, 0) scale(1.08)
+            rotate(calc(var(--rot, 0deg) * 0.35));
         }
         100% {
           opacity: 1;
-          transform: translate3d(-50%, -50%, 0) scale(1) rotate(calc(var(--rot, 0deg) * 0.1));
+          transform: translate3d(-50%, -50%, 0) scale(1)
+            rotate(calc(var(--rot, 0deg) * 0.1));
         }
       }
 
       @keyframes sticker-vignette {
-        0% { opacity: 0; }
-        100% { opacity: 0.28; }
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 0.28;
+        }
       }
 
       /* Stop floating when stamping */
@@ -630,13 +919,17 @@
 
       /* ===== ENVELOPE CARD ===== */
       .card-msg {
-        grid-column: 1 / 2; grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
         animation: floatUp 1s ease forwards 1.4s;
         background: linear-gradient(178deg, #f5ece0 0%, #ede3d2 100%);
-        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), inset 0 0 40px rgba(180,160,130,0.08);
+        box-shadow:
+          0 25px 50px -12px rgba(0, 0, 0, 0.5),
+          inset 0 0 40px rgba(180, 160, 130, 0.08);
         border: none;
         border-radius: 4px;
-        display: flex; flex-direction: column;
+        display: flex;
+        flex-direction: column;
         min-height: clamp(380px, 58vh, 560px);
         position: relative;
         padding: 0;
@@ -651,7 +944,11 @@
         left: 0;
         right: 0;
         height: 34px;
-        background: linear-gradient(180deg, rgba(224,212,194,0.9), rgba(235,224,207,0.2));
+        background: linear-gradient(
+          180deg,
+          rgba(224, 212, 194, 0.9),
+          rgba(235, 224, 207, 0.2)
+        );
         clip-path: polygon(0 0, 100% 0, 50% 100%);
         opacity: 0.6;
         pointer-events: none;
@@ -662,10 +959,20 @@
       .card-msg::after {
         content: "";
         position: absolute;
-        bottom: 0; left: 0; right: 0; height: 8px;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 8px;
         background: repeating-linear-gradient(
-          90deg, #c0392b 0, #c0392b 10px, transparent 10px, transparent 14px,
-          #2c5aa0 14px, #2c5aa0 24px, transparent 24px, transparent 28px
+          90deg,
+          #c0392b 0,
+          #c0392b 10px,
+          transparent 10px,
+          transparent 14px,
+          #2c5aa0 14px,
+          #2c5aa0 24px,
+          transparent 24px,
+          transparent 28px
         );
         border-radius: 0 0 4px 4px;
         opacity: 0.5;
@@ -679,10 +986,15 @@
         margin: 14px;
         padding: 28px 28px 28px 48px;
         background:
-          repeating-linear-gradient(transparent, transparent 30px, rgba(175,155,125,0.1) 30px, rgba(175,155,125,0.1) 31px),
+          repeating-linear-gradient(
+            transparent,
+            transparent 30px,
+            rgba(175, 155, 125, 0.1) 30px,
+            rgba(175, 155, 125, 0.1) 31px
+          ),
           linear-gradient(180deg, #fffcf5 0%, #faf6ee 100%);
         border-radius: 2px;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
         flex-grow: 1;
         display: flex;
         flex-direction: column;
@@ -694,82 +1006,122 @@
       .envelope-paper::before {
         content: "";
         position: absolute;
-        top: 10px; bottom: 10px; left: 38px;
+        top: 10px;
+        bottom: 10px;
+        left: 38px;
         width: 1.5px;
-        background: rgba(200,80,80,0.18);
+        background: rgba(200, 80, 80, 0.18);
         z-index: 0;
       }
 
       .card-header {
         font-family: var(--font-head);
-        font-size: 0.9rem; letter-spacing: 0.1em;
+        font-size: 0.9rem;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
         color: #8b7355;
         margin-bottom: 18px;
-        display: flex; align-items: center; gap: 10px;
-        border-bottom: 1px solid rgba(175,155,125,0.2);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 1px solid rgba(175, 155, 125, 0.2);
         padding-bottom: 14px;
-        position: relative; z-index: 1;
+        position: relative;
+        z-index: 1;
       }
-      .card-header::before { content: "\2709"; font-size: 1.1rem; }
+      .card-header::before {
+        content: "\2709";
+        font-size: 1.1rem;
+      }
 
       .msg-text {
-        font-size: 1.15rem; line-height: 2; color: #4a3f35;
+        font-size: 1.15rem;
+        line-height: 2;
+        color: #4a3f35;
         font-family: "Noto Sans Thai", sans-serif;
         font-weight: 400;
         flex-grow: 1;
-        position: relative; z-index: 1;
+        position: relative;
+        z-index: 1;
       }
       .msg-footer {
-        margin-top: 20px; padding-top: 14px;
-        border-top: 1px solid rgba(175,155,125,0.2);
+        margin-top: 20px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(175, 155, 125, 0.2);
         text-align: right;
-        font-family: "Outfit", sans-serif; font-weight: 700;
-        color: #b85c50; font-size: 0.95rem;
-        position: relative; z-index: 1;
+        font-family: "Outfit", sans-serif;
+        font-weight: 700;
+        color: #b85c50;
+        font-size: 0.95rem;
+        position: relative;
+        z-index: 1;
       }
 
       /* Quote watermark */
       .quote-bg {
-        position: absolute; top: 6px; right: 14px;
-        font-size: 7rem; color: rgba(160,140,110,0.06);
-        font-family: serif; user-select: none; pointer-events: none;
+        position: absolute;
+        top: 6px;
+        right: 14px;
+        font-size: 7rem;
+        color: rgba(160, 140, 110, 0.06);
+        font-family: serif;
+        user-select: none;
+        pointer-events: none;
         line-height: 1;
       }
 
       /* Cat GIF Card */
       .card-cat {
-        grid-column: 2 / 3; grid-row: 1 / 2;
-        display: flex; justify-content: center; align-items: center;
-        padding: 0; overflow: hidden;
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        overflow: hidden;
         animation: floatUp 1s ease forwards 1.6s;
-        background: rgba(0,0,0,0.2);
-        border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.08);
       }
       .cat-img {
-        width: 100%; height: 100%; object-fit: cover;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         transition: transform 0.8s;
       }
-      .card-cat:hover .cat-img { transform: scale(1.1); }
-      .card-cat.launching { opacity: 0; transition: opacity 0.25s ease; }
+      .card-cat:hover .cat-img {
+        transform: scale(1.1);
+      }
+      .card-cat.launching {
+        opacity: 0;
+        transition: opacity 0.25s ease;
+      }
 
-      @keyframes floatUp { to { opacity: 1; transform: translateY(0); } }
+      @keyframes floatUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
       /* ===== STAMPING ANIMATION (MULTI-ELEMENT) ===== */
-      
+
       /* 1. Fullscreen Cat (Overlay) */
       .cat-fullscreen {
         position: fixed;
-        left: 0; top: 0;
-        width: 0; height: 0;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 0;
         z-index: 1000;
         object-fit: cover;
         pointer-events: none;
         opacity: 0;
         visibility: hidden;
         border-radius: 20px;
-        box-shadow: 0 24px 60px rgba(0,0,0,0.45);
-        will-change: left, top, width, height, transform, border-radius, opacity;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+        will-change:
+          left, top, width, height, transform, border-radius, opacity;
       }
       .cat-fullscreen.expand {
         visibility: visible;
@@ -834,18 +1186,26 @@
       /* 2. Stamp Cat (On Card) */
       .cat-stamp {
         position: absolute;
-        bottom: 22px; right: 22px;
-        width: 92px; height: 92px;
+        bottom: 22px;
+        right: 22px;
+        width: 92px;
+        height: 92px;
         border-radius: 50%;
         border: 4px solid #b85c50;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.12), 0 0 0 3px #f5ece0, 0 0 0 5px rgba(184,92,80,0.12);
+        box-shadow:
+          0 3px 10px rgba(0, 0, 0, 0.12),
+          0 0 0 3px #f5ece0,
+          0 0 0 5px rgba(184, 92, 80, 0.12);
         object-fit: cover;
-        opacity: 0; transform: scale(0.2) rotate(-20deg);
+        opacity: 0;
+        transform: scale(0.2) rotate(-20deg);
         pointer-events: none;
         z-index: 20;
-        transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.18s ease;
+        transition:
+          transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+          opacity 0.18s ease;
       }
-      
+
       /* 3. Stamping State */
       .letter-expanding .card-msg,
       .stamping .card-msg {
@@ -855,7 +1215,7 @@
         transform: scale(1.04);
         z-index: 10;
         transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-        box-shadow: 0 30px 60px -12px rgba(0,0,0,0.4);
+        box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.4);
       }
 
       .letter-expanding .card-cat,
@@ -902,7 +1262,11 @@
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        background: radial-gradient(circle at 30% 30%, #fffef1 0%, var(--dust-color, #ffd166) 72%);
+        background: radial-gradient(
+          circle at 30% 30%,
+          #fffef1 0%,
+          var(--dust-color, #ffd166) 72%
+        );
         box-shadow: 0 0 14px rgba(255, 235, 170, 0.95);
         opacity: 0;
         will-change: transform, opacity;
@@ -921,7 +1285,8 @@
           opacity: 0.75;
         }
         100% {
-          transform: translateY(122%) translateX(var(--dust-drift, 0px)) scale(0.35) rotate(280deg);
+          transform: translateY(122%) translateX(var(--dust-drift, 0px))
+            scale(0.35) rotate(280deg);
           opacity: 0;
         }
       }
@@ -1093,9 +1458,17 @@
           grid-row: 1 / 2;
           min-height: clamp(280px, 52vh, 430px);
         }
-        .card-msg::before { height: 28px; top: 0; }
-        .envelope-paper { margin: 8px; padding: 16px 14px 14px 34px; }
-        .envelope-paper::before { left: 32px; }
+        .card-msg::before {
+          height: 28px;
+          top: 0;
+        }
+        .envelope-paper {
+          margin: 8px;
+          padding: 16px 14px 14px 34px;
+        }
+        .envelope-paper::before {
+          left: 32px;
+        }
         .card-cat {
           grid-column: 1 / 2;
           grid-row: 2 / 3;
@@ -1132,8 +1505,10 @@
           padding: 6px 10px;
         }
         .cat-stamp {
-          width: 76px; height: 76px;
-          right: 14px; bottom: 14px;
+          width: 76px;
+          height: 76px;
+          right: 14px;
+          bottom: 14px;
         }
       }
 
@@ -1174,10 +1549,18 @@
       <div class="gate-title">Enter Access Code</div>
       <form id="loginForm">
         <div class="input-group">
-          <input type="text" class="input-name" id="nameInput" placeholder="Name..." autocomplete="off">
+          <input
+            type="text"
+            class="input-name"
+            id="nameInput"
+            placeholder="Name..."
+            autocomplete="off"
+          />
         </div>
         <div class="error-msg" id="errorMsg"></div>
-        <button type="submit" class="btn-start" id="btnStart">Unlock Universe</button>
+        <button type="submit" class="btn-start" id="btnStart">
+          Unlock Universe
+        </button>
       </form>
     </div>
 
@@ -1185,21 +1568,23 @@
     <div id="explosionContainer"></div>
 
     <!-- 3. Fullscreen Animation Cat -->
-    <img src="./node_modules/gif/Kisses Love GIF.gif" class="cat-fullscreen">
+    <img src="/gif/Kisses Love GIF.gif" class="cat-fullscreen" />
 
     <!-- 4. Finale -->
     <div class="finale-container" id="finale">
       <h1 class="grand-title" id="grandName">CONGRATS</h1>
       <!-- Intro Cats Container -->
       <div id="introCats" class="intro-cats-container hidden">
-        <img src="./node_modules/gif/gif.gif" class="intro-cat" alt="Dancing cat 1">
-        <img src="./node_modules/gif/gif.gif" class="intro-cat" alt="Dancing cat 2">
-        <img src="./node_modules/gif/gif.gif" class="intro-cat" alt="Dancing cat 3">
+        <img src="/gif/gif.gif" class="intro-cat" alt="Dancing cat 1" />
+        <img src="/gif/gif.gif" class="intro-cat" alt="Dancing cat 2" />
+        <img src="/gif/gif.gif" class="intro-cat" alt="Dancing cat 3" />
       </div>
-      
+
       <button type="button" class="next-btn hidden" id="nextBtn">Next</button>
-      <button type="button" class="replay-btn hidden" id="replayBtn">ดูอีกครั้ง</button>
-      
+      <button type="button" class="replay-btn hidden" id="replayBtn">
+        ดูอีกครั้ง
+      </button>
+
       <div class="bento-grid" id="bentoGrid">
         <div class="letter-ambient" aria-hidden="true">
           <span class="ambient-orb orb-1"></span>
@@ -1207,7 +1592,11 @@
           <span class="ambient-orb orb-3"></span>
           <span class="ambient-wave"></span>
         </div>
-        <div id="successDust" class="success-dust hidden" aria-hidden="true"></div>
+        <div
+          id="successDust"
+          class="success-dust hidden"
+          aria-hidden="true"
+        ></div>
         <!-- Message -->
         <div class="card card-msg">
           <!-- Inner letter paper -->
@@ -1215,56 +1604,79 @@
             <div class="quote-bg">"</div>
             <div class="card-header">A Letter for You</div>
             <p class="msg-text" id="typewriterText"></p>
-            <div class="msg-footer"> <span>❤️</span></div>
+            <div class="msg-footer"><span>❤️</span></div>
           </div>
 
           <!-- Wax Seal / Stamp Cat -->
-          <img src="./node_modules/gif/Kisses Love GIF.gif" class="cat-stamp">
+          <img src="/gif/Kisses Love GIF.gif" class="cat-stamp" />
         </div>
 
         <!-- Cat GIF (Original Holder) -->
         <div class="card card-cat">
-          <img src="./node_modules/gif/Kisses Love GIF.gif" alt="Cat Kissing" class="cat-img">
+          <img
+            src="/gif/Kisses Love GIF.gif"
+            alt="Cat Kissing"
+            class="cat-img"
+          />
         </div>
       </div>
     </div>
 
     <div id="replayExit" class="replay-exit hidden" aria-hidden="true">
-      <img src="./node_modules/gif/f75361cf-ace1-447f-8767-ecc848a87346.jpg" alt="">
+      <img src="/gif/f75361cf-ace1-447f-8767-ecc848a87346.jpg" alt="" />
       <div id="replayStickers" class="replay-stickers" aria-hidden="true"></div>
     </div>
 
     <script>
-      const validNames = new Set(["มื้นต์","มิ้น","มิ้นท์","มิ้นต์","mint"]);
+      const validNames = new Set([
+        "มื้นต์",
+        "มิ้น",
+        "มิ้นท์",
+        "มิ้นต์",
+        "mint",
+      ]);
       const messages = [
-        "Congratulations!", "ยินดีด้วยครับ", "สุดยอดไปเลย", "เก่งมาก!", 
-        "Hooray!", "Bravo!", "Fantastic", "ยินดีด้วยจ้า", "ฉลอง!", 
-        "Success", "Win", "Victory", "ภูมิใจที่สุด"
+        "Congratulations!",
+        "ยินดีด้วยครับ",
+        "สุดยอดไปเลย",
+        "เก่งมาก!",
+        "Hooray!",
+        "Bravo!",
+        "Fantastic",
+        "ยินดีด้วยจ้า",
+        "ฉลอง!",
+        "Success",
+        "Win",
+        "Victory",
+        "ภูมิใจที่สุด",
       ];
-      
-      const fullMessage = "เก่งมากๆยินดีด้วยครับ พี่ภูมิใจในตัวน้องเสมอ ต่อจากนี้ขอให้ทุกเป้าหมายที่น้องตั้งใจไว้ สำเร็จทุกก้าว และมีรอยยิ้มอยู่ในทุกวัน ขอให้ก้าวต่อไปของน้องเต็มไปด้วยความสุข ความสำเร็จ และสิ่งดีๆที่รอน้องอยู่ข้างหน้า จัฟอิอิ อุอิอา";
 
-      const gate = document.getElementById('gate');
-      const nameInput = document.getElementById('nameInput');
-      const btnStart = document.getElementById('btnStart');
-      const errorMsg = document.getElementById('errorMsg');
-      const finale = document.getElementById('finale');
-      const grandName = document.getElementById('grandName');
-      const introCats = document.getElementById('introCats'); // New Container
-      const introCatItems = Array.from(introCats.querySelectorAll('.intro-cat'));
-      const nextBtn = document.getElementById('nextBtn');
-      const replayBtn = document.getElementById('replayBtn');
-      const replayExit = document.getElementById('replayExit');
-      const replayStickers = document.getElementById('replayStickers');
-      const explosionContainer = document.getElementById('explosionContainer');
-      const bentoGrid = document.getElementById('bentoGrid');
-      const successDust = document.getElementById('successDust');
-      const cardMsg = document.querySelector('.card-msg');
-      const cardCat = document.querySelector('.card-cat');
-      const catImage = document.querySelector('.cat-img');
-      const catFullscreen = document.querySelector('.cat-fullscreen');
-      const catStamp = document.querySelector('.cat-stamp');
-      const typewriterText = document.getElementById('typewriterText');
+      const fullMessage =
+        "เก่งมากๆยินดีด้วยครับ พี่ภูมิใจในตัวน้องเสมอ ต่อจากนี้ขอให้ทุกเป้าหมายที่น้องตั้งใจไว้ สำเร็จทุกก้าว และมีรอยยิ้มอยู่ในทุกวัน ขอให้ก้าวต่อไปของน้องเต็มไปด้วยความสุข ความสำเร็จ และสิ่งดีๆที่รอน้องอยู่ข้างหน้า จัฟอิอิ อุอิอา";
+
+      const gate = document.getElementById("gate");
+      const nameInput = document.getElementById("nameInput");
+      const btnStart = document.getElementById("btnStart");
+      const errorMsg = document.getElementById("errorMsg");
+      const finale = document.getElementById("finale");
+      const grandName = document.getElementById("grandName");
+      const introCats = document.getElementById("introCats"); // New Container
+      const introCatItems = Array.from(
+        introCats.querySelectorAll(".intro-cat"),
+      );
+      const nextBtn = document.getElementById("nextBtn");
+      const replayBtn = document.getElementById("replayBtn");
+      const replayExit = document.getElementById("replayExit");
+      const replayStickers = document.getElementById("replayStickers");
+      const explosionContainer = document.getElementById("explosionContainer");
+      const bentoGrid = document.getElementById("bentoGrid");
+      const successDust = document.getElementById("successDust");
+      const cardMsg = document.querySelector(".card-msg");
+      const cardCat = document.querySelector(".card-cat");
+      const catImage = document.querySelector(".cat-img");
+      const catFullscreen = document.querySelector(".cat-fullscreen");
+      const catStamp = document.querySelector(".cat-stamp");
+      const typewriterText = document.getElementById("typewriterText");
       let introFadeTimer;
       let introNextTimer;
       let introDanceTimer;
@@ -1277,65 +1689,65 @@
       let replayStickerStopTimer;
 
       // Input Logic
-      nameInput.addEventListener('input', (e) => {
+      nameInput.addEventListener("input", (e) => {
         if (e.target.value.trim().length > 0) {
-          btnStart.classList.add('visible');
+          btnStart.classList.add("visible");
         } else {
-          btnStart.classList.remove('visible');
+          btnStart.classList.remove("visible");
         }
       });
 
       // Submit Logic
-      document.getElementById('loginForm').addEventListener('submit', (e) => {
+      document.getElementById("loginForm").addEventListener("submit", (e) => {
         e.preventDefault();
         const raw = nameInput.value.trim();
         const normalized = raw.toLowerCase().replace(/\s+/g, "");
-        
+
         if (validNames.has(normalized)) {
           startCelebration();
         } else {
           errorMsg.textContent = "Access Denied: Incorrect Name";
-          gate.classList.add('shake');
-          setTimeout(() => gate.classList.remove('shake'), 500);
+          gate.classList.add("shake");
+          setTimeout(() => gate.classList.remove("shake"), 500);
         }
       });
 
-      nextBtn.addEventListener('click', () => {
+      nextBtn.addEventListener("click", () => {
         clearReplayResetTimer();
         hideReplayExit();
         clearIntroTimers();
         stopSuccessDust();
         hideReplayButton();
         scheduleReplayButton();
-        introCats.classList.remove('dance-window');
-        nextBtn.classList.remove('dance-window');
-        introCatItems.forEach((cat) => cat.classList.remove('revealed'));
-        introCats.classList.remove('show');
-        introCats.classList.add('hidden');
-        nextBtn.classList.remove('show');
-        nextBtn.classList.add('hidden');
-        grandName.classList.add('hidden');
+        introCats.classList.remove("dance-window");
+        nextBtn.classList.remove("dance-window");
+        introCatItems.forEach((cat) => cat.classList.remove("revealed"));
+        introCats.classList.remove("show");
+        introCats.classList.add("hidden");
+        nextBtn.classList.remove("show");
+        nextBtn.classList.add("hidden");
+        grandName.classList.add("hidden");
         typewriterText.textContent = "";
 
-        bentoGrid.classList.add('visible');
+        bentoGrid.classList.add("visible");
         startSuccessDust();
-        cardMsg.classList.add('floating');
-        cardCat.classList.remove('launching');
-        cardCat.classList.add('floating');
+        cardMsg.classList.add("floating");
+        cardCat.classList.remove("launching");
+        cardCat.classList.add("floating");
 
         requestAnimationFrame(() => {
           requestAnimationFrame(() => runCatStampSequence());
         });
       });
 
-      replayBtn.addEventListener('click', () => {
+      replayBtn.addEventListener("click", () => {
         clearReplayTimer();
         hideReplayButton();
         showReplayExitAndReset();
       });
 
-      window.addEventListener('resize', () => {
-        if (!replayBtn.classList.contains('hidden')) {
+      window.addEventListener("resize", () => {
+        if (!replayBtn.classList.contains("hidden")) {
           positionReplayButton();
         }
       });
@@ -1361,8 +1773,9 @@
 
       function resetReplayStickers() {
         clearReplayStickerTimers();
-        if (replayExit) replayExit.classList.remove('sticker-flood', 'sticker-covered');
-        if (replayStickers) replayStickers.innerHTML = '';
+        if (replayExit)
+          replayExit.classList.remove("sticker-flood", "sticker-covered");
+        if (replayStickers) replayStickers.innerHTML = "";
       }
 
       function getStickerCoverTarget() {
@@ -1381,21 +1794,24 @@
           const start = performance.now();
 
           function checkCoverage() {
-            if (replayExit.classList.contains('hidden')) {
+            if (replayExit.classList.contains("hidden")) {
               resolve(false);
               return;
             }
 
             const elapsed = performance.now() - start;
 
-            if (replayStickers.childElementCount >= target && elapsed >= minVisibleMs) {
-              replayExit.classList.add('sticker-covered');
+            if (
+              replayStickers.childElementCount >= target &&
+              elapsed >= minVisibleMs
+            ) {
+              replayExit.classList.add("sticker-covered");
               resolve(true);
               return;
             }
 
             if (elapsed >= timeoutMs) {
-              replayExit.classList.add('sticker-covered');
+              replayExit.classList.add("sticker-covered");
               resolve(false);
               return;
             }
@@ -1408,14 +1824,20 @@
       }
 
       function buildReplaySticker() {
-        if (!replayStickers || replayExit.classList.contains('hidden')) return;
+        if (!replayStickers || replayExit.classList.contains("hidden")) return;
 
-        const iconPool = ['🥳', '🎉', '✨', '🎊', '💖', '🌟', '🎈', '🎁', '🐱'];
-        const labelPool = ['CONGRATS!', 'ยินดี!', 'เก่งมาก!', 'GREAT JOB!', 'SUCCESS!'];
+        const iconPool = ["🥳", "🎉", "✨", "🎊", "💖", "🌟", "🎈", "🎁", "🐱"];
+        const labelPool = [
+          "CONGRATS!",
+          "ยินดี!",
+          "เก่งมาก!",
+          "GREAT JOB!",
+          "SUCCESS!",
+        ];
         const useLabel = Math.random() < 0.07;
 
-        const sticker = document.createElement('span');
-        sticker.className = useLabel ? 'sticker-pop label' : 'sticker-pop';
+        const sticker = document.createElement("span");
+        sticker.className = useLabel ? "sticker-pop label" : "sticker-pop";
         sticker.textContent = useLabel
           ? labelPool[Math.floor(Math.random() * labelPool.length)]
           : iconPool[Math.floor(Math.random() * iconPool.length)];
@@ -1425,10 +1847,10 @@
         const rot = -24 + Math.random() * 48;
         const duration = 520 + Math.random() * 260;
 
-        sticker.style.setProperty('--x', `${x}%`);
-        sticker.style.setProperty('--y', `${y}%`);
-        sticker.style.setProperty('--rot', `${rot}deg`);
-        sticker.style.setProperty('--dur', `${duration}ms`);
+        sticker.style.setProperty("--x", `${x}%`);
+        sticker.style.setProperty("--y", `${y}%`);
+        sticker.style.setProperty("--rot", `${rot}deg`);
+        sticker.style.setProperty("--dur", `${duration}ms`);
 
         if (!useLabel) {
           const sizePx = 28 + Math.random() * 38;
@@ -1438,13 +1860,19 @@
         return sticker;
       }
 
-      function startReplayStickerFlood(durationMs = 2600, burstWindowMs = 1200) {
+      function startReplayStickerFlood(
+        durationMs = 2600,
+        burstWindowMs = 1200,
+      ) {
         if (!replayExit || !replayStickers) return;
         clearReplayStickerTimers();
-        replayExit.classList.add('sticker-flood');
+        replayExit.classList.add("sticker-flood");
 
         const target = getStickerCoverTarget();
-        const totalStickers = Math.min(720, Math.max(260, Math.round(target * 1.45)));
+        const totalStickers = Math.min(
+          720,
+          Math.max(260, Math.round(target * 1.45)),
+        );
 
         const stickers = document.createDocumentFragment();
         for (let i = 0; i < totalStickers; i += 1) {
@@ -1463,8 +1891,8 @@
       function hideReplayExit() {
         if (!replayExit) return;
         resetReplayStickers();
-        replayExit.classList.remove('show');
-        replayExit.classList.add('hidden');
+        replayExit.classList.remove("show");
+        replayExit.classList.add("hidden");
       }
 
       async function showReplayExitAndReset() {
@@ -1474,8 +1902,8 @@
         clearIntroTimers();
 
         if (replayExit) {
-          replayExit.classList.remove('hidden');
-          requestAnimationFrame(() => replayExit.classList.add('show'));
+          replayExit.classList.remove("hidden");
+          requestAnimationFrame(() => replayExit.classList.add("show"));
         }
 
         startReplayStickerFlood(2600, 1200);
@@ -1484,7 +1912,7 @@
         replayResetTimer = setTimeout(async () => {
           await coveragePromise;
           await wait(320);
-          if (replayExit && replayExit.classList.contains('hidden')) return;
+          if (replayExit && replayExit.classList.contains("hidden")) return;
           window.location.reload();
         }, 2200);
       }
@@ -1492,7 +1920,7 @@
       function positionReplayButton() {
         if (!replayBtn || !bentoGrid) return;
         const rect = bentoGrid.getBoundingClientRect();
-        const centerX = rect.left + (rect.width / 2);
+        const centerX = rect.left + rect.width / 2;
         const preferredTop = rect.bottom + 16;
         const safeBottom = window.innerHeight - replayBtn.offsetHeight - 12;
         const top = Math.max(12, Math.min(preferredTop, safeBottom));
@@ -1502,8 +1930,8 @@
       }
 
       function hideReplayButton() {
-        replayBtn.classList.remove('show');
-        replayBtn.classList.add('hidden');
+        replayBtn.classList.remove("show");
+        replayBtn.classList.add("hidden");
       }
 
       function scheduleReplayButton(delayMs = 8000) {
@@ -1512,18 +1940,18 @@
 
         replayShowTimer = setTimeout(() => {
           positionReplayButton();
-          replayBtn.classList.remove('hidden');
-          requestAnimationFrame(() => replayBtn.classList.add('show'));
+          replayBtn.classList.remove("hidden");
+          requestAnimationFrame(() => replayBtn.classList.add("show"));
         }, delayMs);
       }
 
       function createDustParticle() {
-        if (!successDust || successDust.classList.contains('hidden')) return;
+        if (!successDust || successDust.classList.contains("hidden")) return;
 
-        const particle = document.createElement('span');
-        particle.className = 'dust-particle';
+        const particle = document.createElement("span");
+        particle.className = "dust-particle";
 
-        const palette = ['#ffd166', '#ffe8a3', '#9ad7ff', '#ffb3c7', '#c9b6ff'];
+        const palette = ["#ffd166", "#ffe8a3", "#9ad7ff", "#ffb3c7", "#c9b6ff"];
         const size = 7 + Math.random() * 10;
         const duration = 2200 + Math.random() * 2600;
         const drift = -55 + Math.random() * 110;
@@ -1533,11 +1961,16 @@
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
         particle.style.animationDuration = `${duration}ms`;
-        particle.style.setProperty('--dust-color', palette[Math.floor(Math.random() * palette.length)]);
-        particle.style.setProperty('--dust-drift', `${drift}px`);
+        particle.style.setProperty(
+          "--dust-color",
+          palette[Math.floor(Math.random() * palette.length)],
+        );
+        particle.style.setProperty("--dust-drift", `${drift}px`);
 
         successDust.appendChild(particle);
-        particle.addEventListener('animationend', () => particle.remove(), { once: true });
+        particle.addEventListener("animationend", () => particle.remove(), {
+          once: true,
+        });
       }
 
       function startSuccessDust(durationMs = 0) {
@@ -1546,9 +1979,9 @@
         clearTimeout(dustHideTimer);
         dustHideTimer = null;
 
-        successDust.innerHTML = '';
-        successDust.classList.remove('hidden');
-        requestAnimationFrame(() => successDust.classList.add('active'));
+        successDust.innerHTML = "";
+        successDust.classList.remove("hidden");
+        requestAnimationFrame(() => successDust.classList.add("active"));
 
         for (let i = 0; i < 28; i += 1) {
           setTimeout(createDustParticle, i * 40);
@@ -1571,10 +2004,10 @@
         dustHideTimer = null;
 
         if (!successDust) return;
-        successDust.classList.remove('active');
+        successDust.classList.remove("active");
         dustHideTimer = setTimeout(() => {
-          successDust.classList.add('hidden');
-          successDust.innerHTML = '';
+          successDust.classList.add("hidden");
+          successDust.innerHTML = "";
           dustHideTimer = null;
         }, 360);
       }
@@ -1588,35 +2021,35 @@
       }
 
       function revealIntroCatsInOrder() {
-        introCatItems.forEach((cat) => cat.classList.remove('revealed'));
+        introCatItems.forEach((cat) => cat.classList.remove("revealed"));
 
         const revealOrder = [1, 0, 2]; // middle -> left -> right
         revealOrder.forEach((catIndex, orderIndex) => {
           const timerId = setTimeout(() => {
             const cat = introCatItems[catIndex];
-            if (cat) cat.classList.add('revealed');
+            if (cat) cat.classList.add("revealed");
           }, orderIndex * 260);
           introCatRevealTimers.push(timerId);
         });
       }
 
       function startIntroDanceWindow() {
-        introCats.classList.add('dance-window');
-        nextBtn.classList.add('dance-window');
+        introCats.classList.add("dance-window");
+        nextBtn.classList.add("dance-window");
         introDanceTimer = setTimeout(() => {
-          introCats.classList.remove('dance-window');
-          nextBtn.classList.remove('dance-window');
+          introCats.classList.remove("dance-window");
+          nextBtn.classList.remove("dance-window");
         }, 10000);
       }
 
       function resetOverlayToHidden() {
-        catFullscreen.classList.remove('expand', 'slam');
-        catFullscreen.style.opacity = '0';
-        catFullscreen.style.visibility = 'hidden';
-        catFullscreen.style.left = '-200vw';
-        catFullscreen.style.top = '-200vh';
-        catFullscreen.style.width = '0px';
-        catFullscreen.style.height = '0px';
+        catFullscreen.classList.remove("expand", "slam");
+        catFullscreen.style.opacity = "0";
+        catFullscreen.style.visibility = "hidden";
+        catFullscreen.style.left = "-200vw";
+        catFullscreen.style.top = "-200vh";
+        catFullscreen.style.width = "0px";
+        catFullscreen.style.height = "0px";
       }
 
       function runIntroSequence() {
@@ -1627,40 +2060,40 @@
         clearReplayResetTimer();
         hideReplayExit();
 
-        bentoGrid.classList.remove('visible', 'letter-expanding', 'stamping');
-        cardMsg.classList.remove('floating');
-        cardCat.classList.remove('floating', 'launching');
+        bentoGrid.classList.remove("visible", "letter-expanding", "stamping");
+        cardMsg.classList.remove("floating");
+        cardCat.classList.remove("floating", "launching");
         typewriterText.textContent = "";
         resetOverlayToHidden();
 
-        nextBtn.classList.remove('show');
-        nextBtn.classList.add('hidden');
-        nextBtn.classList.remove('dance-window');
-        introCats.classList.remove('show');
-        introCats.classList.add('hidden');
-        introCats.classList.remove('dance-window');
-        introCatItems.forEach((cat) => cat.classList.remove('revealed'));
+        nextBtn.classList.remove("show");
+        nextBtn.classList.add("hidden");
+        nextBtn.classList.remove("dance-window");
+        introCats.classList.remove("show");
+        introCats.classList.add("hidden");
+        introCats.classList.remove("dance-window");
+        introCatItems.forEach((cat) => cat.classList.remove("revealed"));
 
         grandName.textContent = "CONGRATULATIONS";
-        grandName.classList.remove('hidden', 'fade-out', 'show');
-        requestAnimationFrame(() => grandName.classList.add('show'));
+        grandName.classList.remove("hidden", "fade-out", "show");
+        requestAnimationFrame(() => grandName.classList.add("show"));
 
         introFadeTimer = setTimeout(() => {
-          grandName.classList.add('fade-out');
+          grandName.classList.add("fade-out");
         }, 5000);
 
         introNextTimer = setTimeout(() => {
-          grandName.classList.add('hidden');
+          grandName.classList.add("hidden");
           // Show Cats
-          introCats.classList.remove('hidden');
+          introCats.classList.remove("hidden");
           requestAnimationFrame(() => {
-            introCats.classList.add('show');
+            introCats.classList.add("show");
             revealIntroCatsInOrder();
           });
           // Show Button
-          nextBtn.classList.remove('hidden');
+          nextBtn.classList.remove("hidden");
           requestAnimationFrame(() => {
-            nextBtn.classList.add('show');
+            nextBtn.classList.add("show");
             startIntroDanceWindow();
           });
         }, 6200);
@@ -1673,7 +2106,7 @@
           const finish = () => {
             if (done) return;
             done = true;
-            element.removeEventListener('transitionend', onEnd);
+            element.removeEventListener("transitionend", onEnd);
             clearTimeout(timer);
             resolve();
           };
@@ -1685,7 +2118,7 @@
           };
 
           const timer = setTimeout(finish, fallbackMs);
-          element.addEventListener('transitionend', onEnd);
+          element.addEventListener("transitionend", onEnd);
         });
       }
 
@@ -1698,20 +2131,50 @@
         const expandLeft = (window.innerWidth - expandWidth) / 2;
         const expandTop = (window.innerHeight - expandHeight) / 2;
 
-        catFullscreen.style.setProperty('--cat-from-left', `${sourceRect.left}px`);
-        catFullscreen.style.setProperty('--cat-from-top', `${sourceRect.top}px`);
-        catFullscreen.style.setProperty('--cat-from-width', `${sourceRect.width}px`);
-        catFullscreen.style.setProperty('--cat-from-height', `${sourceRect.height}px`);
+        catFullscreen.style.setProperty(
+          "--cat-from-left",
+          `${sourceRect.left}px`,
+        );
+        catFullscreen.style.setProperty(
+          "--cat-from-top",
+          `${sourceRect.top}px`,
+        );
+        catFullscreen.style.setProperty(
+          "--cat-from-width",
+          `${sourceRect.width}px`,
+        );
+        catFullscreen.style.setProperty(
+          "--cat-from-height",
+          `${sourceRect.height}px`,
+        );
 
-        catFullscreen.style.setProperty('--cat-expand-left', `${expandLeft}px`);
-        catFullscreen.style.setProperty('--cat-expand-top', `${expandTop}px`);
-        catFullscreen.style.setProperty('--cat-expand-width', `${expandWidth}px`);
-        catFullscreen.style.setProperty('--cat-expand-height', `${expandHeight}px`);
+        catFullscreen.style.setProperty("--cat-expand-left", `${expandLeft}px`);
+        catFullscreen.style.setProperty("--cat-expand-top", `${expandTop}px`);
+        catFullscreen.style.setProperty(
+          "--cat-expand-width",
+          `${expandWidth}px`,
+        );
+        catFullscreen.style.setProperty(
+          "--cat-expand-height",
+          `${expandHeight}px`,
+        );
 
-        catFullscreen.style.setProperty('--cat-stamp-left', `${stampRect.left}px`);
-        catFullscreen.style.setProperty('--cat-stamp-top', `${stampRect.top}px`);
-        catFullscreen.style.setProperty('--cat-stamp-width', `${stampRect.width}px`);
-        catFullscreen.style.setProperty('--cat-stamp-height', `${stampRect.height}px`);
+        catFullscreen.style.setProperty(
+          "--cat-stamp-left",
+          `${stampRect.left}px`,
+        );
+        catFullscreen.style.setProperty(
+          "--cat-stamp-top",
+          `${stampRect.top}px`,
+        );
+        catFullscreen.style.setProperty(
+          "--cat-stamp-width",
+          `${stampRect.width}px`,
+        );
+        catFullscreen.style.setProperty(
+          "--cat-stamp-height",
+          `${stampRect.height}px`,
+        );
 
         catFullscreen.style.left = `${sourceRect.left}px`;
         catFullscreen.style.top = `${sourceRect.top}px`;
@@ -1720,7 +2183,7 @@
       }
 
       function resetCatOverlay() {
-        catFullscreen.classList.remove('expand', 'slam');
+        catFullscreen.classList.remove("expand", "slam");
         void catFullscreen.offsetWidth; // Force reflow so animation restarts cleanly
       }
 
@@ -1728,96 +2191,106 @@
         return new Promise((resolve) => {
           const onEnd = (event) => {
             if (event.animationName !== animationName) return;
-            catFullscreen.removeEventListener('animationend', onEnd);
+            catFullscreen.removeEventListener("animationend", onEnd);
             resolve();
           };
 
-          catFullscreen.addEventListener('animationend', onEnd);
+          catFullscreen.addEventListener("animationend", onEnd);
           catFullscreen.classList.add(className);
         });
       }
 
       async function runCatStampSequence() {
-        bentoGrid.classList.remove('letter-expanding', 'stamping');
+        bentoGrid.classList.remove("letter-expanding", "stamping");
         setCatMotionVars();
-        cardCat.classList.add('launching');
-        catFullscreen.style.opacity = '1';
-        catFullscreen.style.visibility = 'visible';
+        cardCat.classList.add("launching");
+        catFullscreen.style.opacity = "1";
+        catFullscreen.style.visibility = "visible";
 
-        const expandDone = waitForTransition(cardMsg, 'transform', 1200);
-        requestAnimationFrame(() => bentoGrid.classList.add('letter-expanding'));
+        const expandDone = waitForTransition(cardMsg, "transform", 1200);
+        requestAnimationFrame(() =>
+          bentoGrid.classList.add("letter-expanding"),
+        );
 
         resetCatOverlay();
-        await playOverlayAnimation('expand', 'catExpand'); // Expand full-screen for ~3s
+        await playOverlayAnimation("expand", "catExpand"); // Expand full-screen for ~3s
         await wait(280); // Short hold so user can admire the cat
 
         await expandDone;
         typeWriter(typewriterText, fullMessage);
 
         resetCatOverlay();
-        await playOverlayAnimation('slam', 'catSlam'); // Fast slam into card corner
+        await playOverlayAnimation("slam", "catSlam"); // Fast slam into card corner
 
-        catFullscreen.classList.remove('expand', 'slam');
-        catFullscreen.style.opacity = '0';
-        catFullscreen.style.visibility = 'hidden';
-        catFullscreen.style.left = '-200vw';
-        catFullscreen.style.top = '-200vh';
-        catFullscreen.style.width = '0px';
-        catFullscreen.style.height = '0px';
+        catFullscreen.classList.remove("expand", "slam");
+        catFullscreen.style.opacity = "0";
+        catFullscreen.style.visibility = "hidden";
+        catFullscreen.style.left = "-200vw";
+        catFullscreen.style.top = "-200vh";
+        catFullscreen.style.width = "0px";
+        catFullscreen.style.height = "0px";
         await wait(60);
-        bentoGrid.classList.add('stamping');
+        bentoGrid.classList.add("stamping");
       }
 
       function startCelebration() {
         // 1. Hide Gate
-        gate.classList.add('zoom-out');
-        
+        gate.classList.add("zoom-out");
+
         // 2. Text Explosion
         spawnExplosion();
 
-          // 3. Show Finale (Delayed)
+        // 3. Show Finale (Delayed)
         setTimeout(() => {
           clearIntroTimers();
-          finale.classList.add('visible');
+          finale.classList.add("visible");
           runIntroSequence();
-
         }, 1200);
       }
 
       function spawnExplosion() {
         // Updated messages to focus on "ยินดี" as requested
         const bubbleMessages = [
-          "ยินดีด้วยจ้า 🎉", "ยินดีด้วยนะ!", "Congratulations! 🥳", 
-          "เก่งมาก!", "ยินดีด้วยครับ", "สุดยอด! ✨", "ยินดีด้วยจริงๆ",
-          "ภูมิใจมาก ❤️", "ยินดี! ยินดี!", "ไชโย!", "Celebrate!" 
+          "ยินดีด้วยจ้า 🎉",
+          "ยินดีด้วยนะ!",
+          "Congratulations! 🥳",
+          "เก่งมาก!",
+          "ยินดีด้วยครับ",
+          "สุดยอด! ✨",
+          "ยินดีด้วยจริงๆ",
+          "ภูมิใจมาก ❤️",
+          "ยินดี! ยินดี!",
+          "ไชโย!",
+          "Celebrate!",
         ];
 
         const count = 30; // Fewer bubbles for better readability
-        
+
         for (let i = 0; i < count; i++) {
           // Slower staggered start (multiply by larger number)
           setTimeout(() => {
-            const el = document.createElement('div');
-            el.className = 'exploding-text';
-            
-            const text = bubbleMessages[Math.floor(Math.random() * bubbleMessages.length)];
+            const el = document.createElement("div");
+            el.className = "exploding-text";
+
+            const text =
+              bubbleMessages[Math.floor(Math.random() * bubbleMessages.length)];
             el.textContent = text;
-            if (/[ก-๙]/.test(text)) el.classList.add('thai');
+            if (/[ก-๙]/.test(text)) el.classList.add("thai");
 
             // Less random rotation for chat bubble look
             // Position randomly but keep within bounds
-            const left = 5 + Math.random() * 90; 
+            const left = 5 + Math.random() * 90;
             const scale = 0.8 + Math.random() * 0.5; // Slight size variation
-            
-            el.style.left = left + '%';
-            el.style.bottom = '-10vh';
-            el.style.fontSize = (1.2 + Math.random() * 0.8) + 'rem';
-            
+
+            el.style.left = left + "%";
+            el.style.bottom = "-10vh";
+            el.style.fontSize = 1.2 + Math.random() * 0.8 + "rem";
+
             // Random Z-index
             el.style.zIndex = Math.floor(Math.random() * 100);
 
             explosionContainer.appendChild(el);
-            
+
             // Cleanup after long animation
             setTimeout(() => el.remove(), 9000);
           }, i * 300); // Spawn one every 300ms (much slower)
