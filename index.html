@@ -2031,8 +2031,8 @@
 
         const target = getStickerCoverTarget();
         const totalStickers = performanceLite
-          ? Math.min(25, Math.max(20, Math.round(target * 0.08)))
-          : Math.min(40, Math.max(30, Math.round(target * 0.12)));
+          ? Math.min(35, Math.max(30, Math.round(target * 0.1)))
+          : Math.min(55, Math.max(45, Math.round(target * 0.15)));
         const floodWindow = performanceLite
           ? Math.max(600, burstWindowMs * 0.7)
           : Math.max(800, burstWindowMs * 0.85);
@@ -2206,10 +2206,7 @@
         if (performanceLite) return;
         introCats.classList.add("dance-window");
         nextBtn.classList.add("dance-window");
-        introDanceTimer = setTimeout(() => {
-          introCats.classList.remove("dance-window");
-          nextBtn.classList.remove("dance-window");
-        }, 10000);
+        // No timeout - show indefinitely until user clicks Next
       }
 
       function resetOverlayToHidden() {
