@@ -1568,16 +1568,16 @@
     <div id="explosionContainer"></div>
 
     <!-- 3. Fullscreen Animation Cat -->
-    <img src="./gif/Kisses Love GIF.gif" class="cat-fullscreen" />
+    <img src="./assets/Kisses%20Love%20GIF-DpwsdCOV.gif" data-gif-file="Kisses Love GIF.gif" class="cat-fullscreen" />
 
     <!-- 4. Finale -->
     <div class="finale-container" id="finale">
       <h1 class="grand-title" id="grandName">CONGRATS</h1>
       <!-- Intro Cats Container -->
       <div id="introCats" class="intro-cats-container hidden">
-        <img src="./gif/gif.gif" class="intro-cat" alt="Dancing cat 1" />
-        <img src="./gif/gif.gif" class="intro-cat" alt="Dancing cat 2" />
-        <img src="./gif/gif.gif" class="intro-cat" alt="Dancing cat 3" />
+        <img src="./assets/gif-CGI13zTa.gif" data-gif-file="gif.gif" class="intro-cat" alt="Dancing cat 1" />
+        <img src="./assets/gif-CGI13zTa.gif" data-gif-file="gif.gif" class="intro-cat" alt="Dancing cat 2" />
+        <img src="./assets/gif-CGI13zTa.gif" data-gif-file="gif.gif" class="intro-cat" alt="Dancing cat 3" />
       </div>
 
       <button type="button" class="next-btn hidden" id="nextBtn">Next</button>
@@ -1608,13 +1608,14 @@
           </div>
 
           <!-- Wax Seal / Stamp Cat -->
-          <img src="./gif/Kisses Love GIF.gif" class="cat-stamp" />
+          <img src="./assets/Kisses%20Love%20GIF-DpwsdCOV.gif" data-gif-file="Kisses Love GIF.gif" class="cat-stamp" />
         </div>
 
         <!-- Cat GIF (Original Holder) -->
         <div class="card card-cat">
           <img
-            src="./gif/Kisses Love GIF.gif"
+            src="./assets/Kisses%20Love%20GIF-DpwsdCOV.gif"
+            data-gif-file="Kisses Love GIF.gif"
             alt="Cat Kissing"
             class="cat-img"
           />
@@ -1623,7 +1624,7 @@
     </div>
 
     <div id="replayExit" class="replay-exit hidden" aria-hidden="true">
-      <img src="./gif/f75361cf-ace1-447f-8767-ecc848a87346.jpg" alt="" />
+      <img src="./assets/f75361cf-ace1-447f-8767-ecc848a87346-Dhj-JZIh.jpg" data-gif-file="f75361cf-ace1-447f-8767-ecc848a87346.jpg" alt="" />
       <div id="replayStickers" class="replay-stickers" aria-hidden="true"></div>
     </div>
 
@@ -1687,6 +1688,68 @@
       let replayShowTimer;
       let replayResetTimer;
       let replayStickerStopTimer;
+
+      function probeImage(candidate) {
+        return new Promise((resolve) => {
+          const tester = new Image();
+          tester.onload = () => resolve(candidate);
+          tester.onerror = () => resolve(null);
+          tester.src = candidate;
+        });
+      }
+
+      async function resolveGifSource(img, candidates) {
+        for (const candidate of candidates) {
+          const ok = await probeImage(candidate);
+          if (!ok) continue;
+          if (img.getAttribute("src") !== candidate) {
+            img.setAttribute("src", candidate);
+          }
+          return;
+        }
+      }
+
+      function attachGifFallbacks() {
+        const gifImages = Array.from(document.querySelectorAll("img[data-gif-file]"));
+        const pathParts = window.location.pathname.split("/").filter(Boolean);
+        const firstSegment = pathParts[0] || "";
+        const repoPrefix =
+          firstSegment && !firstSegment.includes(".") ? `/${firstSegment}` : "";
+
+        gifImages.forEach((img) => {
+          const fileName = img.getAttribute("data-gif-file");
+          if (!fileName) return;
+
+          const currentSrc = img.getAttribute("src");
+          const candidates = [
+            currentSrc,
+            `${repoPrefix}/gif/${fileName}`,
+            `${repoPrefix}/public/gif/${fileName}`,
+            `${window.location.origin}${repoPrefix}/gif/${fileName}`,
+            `${window.location.origin}${repoPrefix}/public/gif/${fileName}`,
+            `./gif/${fileName}`,
+            `gif/${fileName}`,
+            `./public/gif/${fileName}`,
+            `/gif/${fileName}`,
+            `/public/gif/${fileName}`,
+          ].filter(Boolean);
+
+          const uniqueCandidates = Array.from(new Set(candidates));
+
+          if (img.complete && img.naturalWidth > 0) return;
+
+          resolveGifSource(img, uniqueCandidates);
+          img.addEventListener(
+            "error",
+            () => {
+              resolveGifSource(img, uniqueCandidates);
+            },
+            { once: true },
+          );
+        });
+      }
+
+      attachGifFallbacks();
 
       // Input Logic
       nameInput.addEventListener("input", (e) => {
