@@ -569,26 +569,24 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        
+
         /* Multi-layer glow and shadow */
-        filter: 
-          drop-shadow(0 0 10px rgba(168, 85, 247, 0.5))
+        filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5))
           drop-shadow(0 0 20px rgba(56, 189, 248, 0.4))
           drop-shadow(0 0 40px rgba(168, 85, 247, 0.2))
           drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
       }
 
       @keyframes glowPulse {
-        0%, 100% {
-          filter: 
-            drop-shadow(0 0 10px rgba(168, 85, 247, 0.5))
+        0%,
+        100% {
+          filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5))
             drop-shadow(0 0 20px rgba(56, 189, 248, 0.4))
             drop-shadow(0 0 40px rgba(168, 85, 247, 0.2))
             drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
         }
         50% {
-          filter: 
-            drop-shadow(0 0 15px rgba(168, 85, 247, 0.7))
+          filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.7))
             drop-shadow(0 0 30px rgba(56, 189, 248, 0.6))
             drop-shadow(0 0 50px rgba(168, 85, 247, 0.3))
             drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
@@ -607,7 +605,7 @@
       .grand-title.show {
         opacity: 1;
         transform: translate(-50%, -50%) translateY(0);
-        animation: 
+        animation:
           glowPulse 3s ease-in-out infinite,
           shimmerMove 8s linear infinite;
       }
@@ -2286,7 +2284,7 @@
 
         introFadeTimer = setTimeout(() => {
           grandName.classList.add("fade-out");
-        }, 5000);
+        }, 8000);
 
         introNextTimer = setTimeout(() => {
           grandName.classList.add("hidden");
@@ -2302,7 +2300,7 @@
             nextBtn.classList.add("show");
             startIntroDanceWindow();
           });
-        }, 6200);
+        }, 10000);
       }
 
       function waitForTransition(element, propertyName, fallbackMs = 1100) {
